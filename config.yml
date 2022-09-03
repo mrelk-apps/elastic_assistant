@@ -1,0 +1,34 @@
+# Mr.Elk is served by a back end server. This setting specifies the port to use.
+server.port: 9820
+
+# Specifies the address to which the Mr.Elk server will bind. IP addresses and host names are both valid values.
+# The default is 'localhost', which usually means remote machines will not be able to connect.
+# To allow connections from remote users, set this parameter to a non-loopback address.
+# non-loopback address example: server.host: "0.0.0.0"
+server.host: "0.0.0.0"
+
+# The URLs of the Elasticsearch instances to use for all your queries.
+# can use more than 1 node at a time to round robin on them
+# Example: elasticsearch.url: ["http://nod1:9200","http://nod2:9200"]
+# NOTE: [Scheme://IP:Port] MUST BE SPECIFIED
+elasticsearch.url: ["http://10.0.0.51:9200"]
+
+# If your Elasticsearch is protected with basic authentication, these settings provide
+# the username and password that the Mr.Elk server uses to perform queries on Elasticsearch
+# default are empty strings
+elasticsearch.username: ""
+elasticsearch.password: ""
+
+# Optional setting that enables you to specify a path to the PEM file for the certificate
+# authority for your Elasticsearch instance.
+elasticsearch.ssl.certificateAuthorities: ""
+
+# To disregard the validity of SSL certificates, change this setting's value to 'none'.
+elasticsearch.ssl.verificationMode: none
+
+# Enables you to specify a file where Kibana stores log output.
+logging.dest: /var/log/mrelk
+
+# Set the value of this setting to true to log all events, including system usage information
+# and all requests.
+logging.verbose: false
