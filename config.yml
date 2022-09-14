@@ -11,17 +11,17 @@ server.host: "0.0.0.0"
 # can use more than 1 node at a time to round robin on them
 # Example: elasticsearch.url: ["http://nod1:9200","http://nod2:9200"]
 # NOTE: [Scheme://IP:Port] MUST BE SPECIFIED
-elasticsearch.url: ["http://10.0.0.51:9200"]
+elasticsearch.url: ["http://elasticsearch:9200"]
 
 # If your Elasticsearch is protected with basic authentication, these settings provide
 # the username and password that the Mr.Elk server uses to perform queries on Elasticsearch
 # default are empty strings
-elasticsearch.username: ""
-elasticsearch.password: ""
+elasticsearch.username: "elastic"
+elasticsearch.password: "elastic"
 
 # Optional setting that enables you to specify a path to the PEM file for the certificate
 # authority for your Elasticsearch instance.
-elasticsearch.ssl.certificateAuthorities: ""
+elasticsearch.ssl.certificateAuthorities: "/path/to/certificate"
 
 # To disregard the validity of SSL certificates, change this setting's value to 'none'.
 elasticsearch.ssl.verificationMode: none

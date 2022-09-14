@@ -28,6 +28,16 @@ def home():
                 inactive_engines=inactive_engines,
                 watchers_status=watchers_status)
 
+@app.route('/settings')
+def settings():
+    es,connection_status = multi_url_connection(config['elasticsearch.url'], 
+                                        config['elasticsearch.username'], 
+                                        config['elasticsearch.password'], 
+                                        config['elasticsearch.ssl.certificateAuthorities'], 
+                                        config['elasticsearch.ssl.verificationMode'])
+    return render_template('settings.html', 
+                connection_status=connection_status,config=config)
+
 if __name__ == '__main__':
     arguments, arg_valid = validate_arugments(sys.argv)
     if arg_valid == "Valid":

@@ -1,4 +1,5 @@
 ### Elasticsearch 7.X 
+import requests
 from typing import Any
 from ssl import create_default_context
 from elasticsearch import Elasticsearch
@@ -70,3 +71,12 @@ def establish_connection(url: str, username: str, password: str, certificate_pat
         return es, "Connected"
     else:
         return None, "Not Connected"
+
+def connect_to_elastic(url: str, username: str, password: str, certificate_path: str, verify: bool):
+    url = "http://10.0.0.12:9200/"
+
+    payload = {}
+    headers = {}
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+    return response.status_code

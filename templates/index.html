@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <meta name="keywords" content="MR.ELK">
     <meta name="description" content="">
-    <title>Mr.Elk</title>
+    <title>Mr.Elk | Home</title>
     <link rel = "icon" href="{{ url_for('static', filename= 'images/logo5.png') }}" type = "image/x-icon">
-    <meta http-equiv="refresh" content="5"/>
 
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/nicepage.css') }}" media="screen">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/Home.css') }}" media="screen">
@@ -30,16 +29,13 @@
         <a href="https://www.mrelk.org" class="u-image u-logo u-image-1" data-image-width="1287" data-image-height="1500">
           <img src="{{ url_for('static', filename= 'images/logo5.png') }}" class="u-logo-image u-logo-image-1">
         </a>
-        <a href="https://www.mrelk.org" ><p class="u-custom-font u-text u-text-custom-color-2 u-text-default u-text-1">MR. ELK</p></a>
+        <p class="u-custom-font u-text u-text-default u-text-1"><a href="https://www.mrelk.org" ><span class="u-text-custom-color-2">MR. ELK</span></a></p>
         <p class="u-custom-font u-text u-text-default u-text-white u-text-2">Elastic Assistent 1.0.0-Alpha</p>
         {% if connection_status == "Connected" %}
-          <p class="u-btn u-radius-50 u-btn-1" style="background-color: #6CC24A; color: white">{{ connection_status }}</p>
+          <p class="u-btn u-radius-15 u-btn-1" style="background-color: #6CC24A; color: white">{{ connection_status }}</p>
         {% else %}
-          <p class="u-btn u-radius-50 u-btn-1" style="background-color: #db545a; color: white">{{ connection_status }}</p>
-        {% endif %}        
-        <span class="u-file-icon u-hover-feature u-icon u-icon-rectangle u-text-white u-icon-1">
-          <img src="{{ url_for('static', filename= 'images/563541-8bf33ff1.png') }}" alt="">
-        </span>
+          <p class="u-btn u-radius-15 u-btn-1" style="background-color: #db545a; color: white">{{ connection_status }}</p>
+        {% endif %}
       </div>
     </header>
     <section class="u-align-center u-clearfix u-grey-90 u-section-1" id="sec-ea4d">
@@ -56,60 +52,42 @@
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
             <div class="u-layout-row">
-              <div class="u-container-style u-hover-feature u-layout-cell u-shape-rectangle u-size-22-md u-size-22-sm u-size-22-xs u-size-29-xl u-size-32-lg u-layout-cell-1">
+              <div class="u-container-style u-layout-cell u-shape-rectangle u-size-22-md u-size-22-sm u-size-22-xs u-size-29-xl u-size-32-lg u-layout-cell-1">
                 <div class="u-container-layout u-container-layout-2">
                   <div class="u-layout-grid u-list u-list-1">
                     <div class="u-repeater u-repeater-1">
                       <div class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-1">
-                        <div class="u-container-layout u-similar-container u-container-layout-3">
-                          <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-1" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-                            <img src="{{ url_for('static', filename= 'images/1265775-76a3e5a6.png') }}" alt="">
-                          </span>
-                          <p class="u-align-center u-custom-font u-text u-text-2">Analyze Cluster</p>
-                        </div>
-                      </div>
-                      <div class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-2">
-                        <div class="u-container-layout u-similar-container u-container-layout-4">
+                        <div class="u-container-layout u-similar-container u-container-layout-1" style="padding-top: 25%;">
                           <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-2">
                             <img src="{{ url_for('static', filename= 'images/1208913-2ac3a913.png') }}" alt="">
                           </span>
-                          <p class="u-align-center u-custom-font u-text u-text-3">Nodes Metrics</p>
+                          <p class="u-align-center u-custom-font u-text u-text-3">Nodes Stats</p>
                         </div>
                       </div>
-                      <div class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-3">
-                        <div class="u-container-layout u-similar-container u-container-layout-5">
+                      <div class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-2">
+                        <div class="u-container-layout u-similar-container u-container-layout-2" style="padding-top: 25%;">
                           <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-3" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
                             <img src="{{ url_for('static', filename= 'images/6098623-e1c52f22.png') }}" alt="">
                           </span>
-                          <p class="u-align-center u-custom-font u-text u-text-4">
-                            <span style="font-weight: 700;">Watcher</span> Engine Status
-                          </p>
+                          <p class="u-align-center u-custom-font u-text u-text-4">Watcher Engine Status</p>
                         </div>
                       </div>
-                      <div class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-4">
-                        <div class="u-container-layout u-similar-container u-container-layout-6">
+                      <div class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-3">
+                        <div class="u-container-layout u-similar-container u-container-layout-3" style="padding-top: 25%;">
                           <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-4" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
                             <img src="{{ url_for('static', filename= 'images/3051927-07348805.png') }}" alt="">
                           </span>
                           <p class="u-align-center u-custom-font u-text u-text-5">Move &amp; Assign Shards</p>
                         </div>
                       </div>
-                      <div class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-5">
-                        <div class="u-container-layout u-similar-container u-container-layout-7">
-                          <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-5" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-                            <img src="{{ url_for('static', filename= 'images/681662-68a76634.png') }}" alt="">
+                      <a href="settings" class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-3">
+                        <div class="u-container-layout u-similar-container u-container-layout-3" style="padding-top: 25%;">
+                          <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-4"  data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
+                            <img src="{{ url_for('static', filename= 'images/563541-8bf33ff1.png') }}" alt="">
                           </span>
-                          <p class="u-align-center u-custom-font u-text u-text-6">Design Expansion</p>
-                        </div>
+                          <p class="u-align-center u-custom-font u-text u-text-5 u-text-white" >Settings</p>
                       </div>
-                      <div class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-6">
-                        <div class="u-container-layout u-similar-container u-container-layout-8">
-                          <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-6" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-                            <img src="{{ url_for('static', filename= 'images/2014901-961b8d77.png') }}" alt="">
-                          </span>
-                          <p class="u-align-center u-custom-font u-text u-text-7">Monitor Cluster</p>
-                        </div>
-                      </div>
+                    </a>
                     </div>
                   </div>
                 </div>
@@ -161,4 +139,5 @@
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-0c0d"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1"> © 2022 MR.ELK - All Rights Reserved</p>
       </div></footer>
-</body></html>
+  </body>
+</html>
