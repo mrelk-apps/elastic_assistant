@@ -18,18 +18,24 @@
 		"name": "Mr.Elk_Elastic_Assistant",
 		"logo": "{{ url_for('static', filename= 'images/logo5.png') }}"}
     </script>
+    <script>
+      setInterval(function() {
+        $("#connection_status").load(location.href+" #connection_status>*","");
+        $("#cluster_overview").load(location.href+" #cluster_overview>*","");
+      }, 5000);  
+    </script>         
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Mr.Elk">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   </head>
-  <body data-home-page="Home.html" data-home-page-title="Mr.Elk | Home" class="u-body u-xl-mode" data-lang="en">
+  <body data-home-page="index.html" data-home-page-title="Mr.Elk | Home" class="u-body u-xl-mode" data-lang="en">
     <header class="u-clearfix u-grey-90 u-header u-sticky u-sticky-466c" id="sec-c265" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-      <div class="u-clearfix u-sheet u-valign-middle-lg u-sheet-1">
-        <a href="https://www.mrelk.org" class="u-image u-logo u-image-1" data-image-width="1287" data-image-height="1500">
+      <div class="u-clearfix u-sheet u-valign-middle-lg u-sheet-1" id="connection_status">
+        <a href="/" class="u-image u-logo u-image-1" data-image-width="1287" data-image-height="1500">
           <img src="{{ url_for('static', filename= 'images/logo5.png') }}" class="u-logo-image u-logo-image-1">
         </a>
-        <p class="u-custom-font u-text u-text-default u-text-1"><a href="https://www.mrelk.org" ><span class="u-text-custom-color-2">MR. ELK</span></a></p>
+        <p class="u-custom-font u-text u-text-default u-text-1"><a href="/" ><span class="u-text-custom-color-2">MR. ELK</span></a></p>
         <p class="u-custom-font u-text u-text-default u-text-white u-text-2">Elastic Assistent 1.0.0-Alpha</p>
         {% if connection_status == "Connected" %}
           <p class="u-btn u-radius-15 u-btn-1" style="background-color: #6CC24A; color: white">{{ connection_status }}</p>
@@ -39,6 +45,7 @@
       </div>
     </header>
     <section class="u-align-center u-clearfix u-grey-90 u-section-1" id="sec-ea4d">
+      
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-border-2 u-border-custom-color-1 u-container-style u-group u-radius-10 u-shape-round u-white u-group-1">
           <div class="u-container-layout u-valign-middle u-container-layout-1">
@@ -56,14 +63,14 @@
                 <div class="u-container-layout u-container-layout-2">
                   <div class="u-layout-grid u-list u-list-1">
                     <div class="u-repeater u-repeater-1">
-                      <div class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-1">
+                      <a href="nodes" class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-3">
                         <div class="u-container-layout u-similar-container u-container-layout-1" style="padding-top: 25%;">
                           <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-2">
                             <img src="{{ url_for('static', filename= 'images/1208913-2ac3a913.png') }}" alt="">
                           </span>
                           <p class="u-align-center u-custom-font u-text u-text-3">Nodes Stats</p>
                         </div>
-                      </div>
+                      </a>
                       <div class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-2">
                         <div class="u-container-layout u-similar-container u-container-layout-2" style="padding-top: 25%;">
                           <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-3" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
@@ -92,8 +99,9 @@
                   </div>
                 </div>
               </div>
-              <div class="u-container-style u-grey-80 u-layout-cell u-radius-15 u-shape-round u-size-28-lg u-size-31-xl u-size-38-md u-size-38-sm u-size-38-xs u-layout-cell-2">
+              <div class="u-container-style u-grey-80 u-layout-cell u-radius-15 u-shape-round u-size-28-lg u-size-31-xl u-size-38-md u-size-38-sm u-size-38-xs u-layout-cell-2" id="cluster_overview">
                 <div class="u-border-2 u-border-custom-color-2 u-container-layout u-container-layout-9">
+                          
                   <p class="u-custom-font u-text u-text-default u-text-8">
                     <span style="font-size: 26px;">Cluster Overview:</span></p>
                   {% if connection_status == "Connected" %}
@@ -136,8 +144,8 @@
       </div>
     </section>
 
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-0c0d"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1"> © 2022 MR.ELK - All Rights Reserved</p>
+    <footer class="u-align-center u-clearfix u-footer u-grey-80" id="sec-0c0d"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1" style="font-size: 12px;"> © 2022 MR.ELK - All Rights Reserved</p>
       </div></footer>
   </body>
 </html>

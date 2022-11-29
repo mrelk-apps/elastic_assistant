@@ -30,12 +30,26 @@ def home():
 
 @app.route('/settings')
 def settings():
-    es,connection_status = multi_url_connection(config['elasticsearch.url'], 
+    config, _ = read_config_yaml(arguments['conf.path'])
+    _,connection_status = multi_url_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
                                         config['elasticsearch.password'], 
                                         config['elasticsearch.ssl.certificateAuthorities'], 
                                         config['elasticsearch.ssl.verificationMode'])
     return render_template('settings.html', 
+                connection_status=connection_status,config=config)
+
+
+@app.route('/nodes', methods=['GET', 'POST'])
+def nodes():
+    config, _ = read_config_yaml(arguments['conf.path'])
+    _,connection_status = multi_url_connection(config['elasticsearch.url'], 
+                                        config['elasticsearch.username'], 
+                                        config['elasticsearch.password'], 
+                                        config['elasticsearch.ssl.certificateAuthorities'], 
+                                        config['elasticsearch.ssl.verificationMode'])
+    
+    return render_template('Nodes.html', 
                 connection_status=connection_status,config=config)
 
 if __name__ == '__main__':

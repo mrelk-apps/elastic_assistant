@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="MR.ELK">
     <meta name="description" content="">
-    <title>Mr.Elk | Settings</title>
+    <title>Mr.Elk | Nodes Metrics</title>
     <link rel = "icon" href="{{ url_for('static', filename= 'images/logo5.png') }}" type = "image/x-icon">
 
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/nicepage.css') }}" media="screen">
@@ -20,9 +20,9 @@
 		"logo": "{{ url_for('static', filename= 'images/logo5.png') }}"}
     </script>
     <script>
-      setInterval(function() {
+      setInterval
+      (function() {
         $("#connection_status").load(location.href+" #connection_status>*","");
-        $("#tab-cdf7").load(location.href+" #tab-cdf7>*","");
         $("#tab-5515").load(location.href+" #tab-5515>*","");
       }, 1000);  
     </script> 
@@ -33,16 +33,16 @@
   </head>
   <body data-home-page="settings.html" data-home-page-title="Mr.Elk | Settings" class="u-body u-xl-mode" data-lang="en">
     <header class="u-clearfix u-grey-90 u-header u-sticky u-sticky-466c" id="sec-c265" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-      <div class="u-clearfix u-sheet u-valign-middle-lg u-sheet-1">
+      <div class="u-clearfix u-sheet u-valign-middle-lg u-sheet-1" id="connection_status">
         <a href="/" class="u-image u-logo u-image-1" data-image-width="1287" data-image-height="1500">
           <img src="{{ url_for('static', filename= 'images/logo5.png') }}" class="u-logo-image u-logo-image-1">
         </a>
         <p class="u-custom-font u-text u-text-default u-text-1"><a href="/" ><span class="u-text-custom-color-2">MR. ELK</span></a></p>
         <p class="u-custom-font u-text u-text-default u-text-white u-text-2">Elastic Assistent 1.0.0-Alpha</p>
         {% if connection_status == "Connected" %}
-          <p class="u-btn u-radius-15 u-btn-1" style="background-color: #6CC24A; color: white; ">{{ connection_status }}</p>
+          <p class="u-btn u-radius-15 u-btn-1" style="background-color: #6CC24A; color: white; visibility: hidden;">{{ connection_status }}</p>
         {% else %}
-          <p class="u-btn u-radius-15 u-btn-1" style="background-color: #db545a; color: white; ">{{ connection_status }}</p>
+          <p class="u-btn u-radius-15 u-btn-1" style="background-color: #db545a; color: white; visibility: hidden;">{{ connection_status }}</p>
         {% endif %}
       </div>
     </header>
@@ -50,16 +50,19 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-border-2 u-border-custom-color-1 u-container-style u-group u-radius-10 u-shape-round u-white u-group-1">
           <div class="u-container-layout u-container-layout-1">
-            <p class="u-align-left u-custom-font u-text u-text-1">Editing the Setting will need a restart afterwards, please use the save button below for each tab you change values in then restart the service.</p>
+            <p class="u-align-left u-custom-font u-text u-text-1">Each tab will show you a specific type of metrics for all your nodes.</p>
           </div>
         </div>
-        <div class="u-tabs u-tabs-1">
+        <div class="u-tabs u-tabs-1" id="tabs">
           <ul class="u-tab-list u-unstyled" role="tablist">
-            <li class="u-tab-item" role="presentation">
-              <a class=" active u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-1" id="link-tab-cdf7" href="#tab-cdf7" role="tab" aria-controls="tab-cdf7" aria-selected="true">General</a>
+            <li class="u-tab-item" role="presentation" id="tab_1">
+              <a class="active u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-1" id="link-tab-cdf7" href="#tab-cdf7" role="tab" aria-controls="tab-cdf7" aria-selected="true">Stats</a>
             </li>
-            <li class="u-tab-item" role="presentation">
-              <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-5515" href="#tab-5515" role="tab" aria-controls="tab-5515" aria-selected="false">Elastic Connection</a>
+            <li class="u-tab-item" role="presentation" id="tab_2">
+              <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-5515" href="#tab-5515" role="tab" aria-controls="tab-5515" aria-selected="false">Metrics</a>
+            </li>
+            <li class="u-tab-item" role="presentation" id="tab_3">
+              <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-5516" href="#tab-5516" role="tab" aria-controls="tab-5516" aria-selected="false">Index Metrics</a>
             </li>
           </ul>
           <div class="u-tab-content">
@@ -123,11 +126,6 @@
           
         </div>
       </div>
-      
-      
-      
-      
-      
     </section>
     
     

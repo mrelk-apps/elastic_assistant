@@ -96,3 +96,17 @@ def get_watcher_engine_status(es: Elasticsearch):
             return active_engines, unassigned_watches, data 
         except ElasticsearchException:
             return 0, 0, None
+
+
+def get_nodes_stats(es: Elasticsearch):
+    """
+    """
+    if es is None:
+        return None
+    else:
+        try:
+            es.nodes.stats()
+            
+        except ElasticsearchException:
+            return None
+        
