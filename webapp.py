@@ -28,7 +28,7 @@ def home():
                 inactive_engines=inactive_engines,
                 watchers_status=watchers_status)
 
-@app.route('/settings')
+@app.route('/settings', methods=['GET', 'POST'])
 def settings():
     config, _ = read_config_yaml(arguments['conf.path'])
     _,connection_status = multi_url_connection(config['elasticsearch.url'], 
@@ -40,17 +40,19 @@ def settings():
                 connection_status=connection_status,config=config)
 
 
-@app.route('/nodes', methods=['GET', 'POST'])
+@app.route('/nodes')
 def nodes():
     config, _ = read_config_yaml(arguments['conf.path'])
-    _,connection_status = multi_url_connection(config['elasticsearch.url'], 
+    es,connection_status = multi_url_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
                                         config['elasticsearch.password'], 
                                         config['elasticsearch.ssl.certificateAuthorities'], 
                                         config['elasticsearch.ssl.verificationMode'])
-    
+    table_headers, table_data=get_thread_pool(es)
     return render_template('Nodes.html', 
-                connection_status=connection_status,config=config)
+                connection_status=connection_status,
+                table_headers=table_headers,
+                table_data=table_data)
 
 if __name__ == '__main__':
     arguments, arg_valid = validate_arugments(sys.argv)

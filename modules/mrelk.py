@@ -109,4 +109,16 @@ def get_nodes_stats(es: Elasticsearch):
             
         except ElasticsearchException:
             return None
-        
+
+def get_thread_pool(es: Elasticsearch):
+    """
+    """  
+    if es is None:
+        return None
+    else:
+        try:
+            table_data = es.cat.thread_pool(format="json", h="node_name,ip,name,queue_size,queue,active,rejected,completed", s="nn,ip,c")
+            table_headers=list(table_data[0].keys())
+            return table_headers, table_data
+        except ElasticsearchException:
+            return None, None

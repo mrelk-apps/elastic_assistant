@@ -72,6 +72,8 @@ def establish_connection(url: str, username: str, password: str, certificate_pat
     else:
         return None, "Not Connected"
 
+
+### TODO: this next part is to replace the old connection and make a new connection using requests (will stop using elasticsearch library)
 def check_connection(url: str, username: str, password: str, certificate_path: str, verify: bool):
     url = "http://10.0.0.12:9200/"
 

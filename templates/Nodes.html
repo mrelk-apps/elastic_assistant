@@ -10,8 +10,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/nicepage.css') }}" media="screen">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/Home.css') }}" media="screen">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/settings.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/dataTables.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/bootstrap.css') }}" media="screen">
     <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/jquery.js') }}" "="" defer=""></script>
     <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/nicepage.js') }}" "="" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/dataTables.js') }}" "="" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/bootstrap.bundle.js') }}" "="" defer=""></script>
         
     <script type="application/ld+json">{
 		"@context": "https://www.mrelk.org",
@@ -23,7 +27,6 @@
       setInterval
       (function() {
         $("#connection_status").load(location.href+" #connection_status>*","");
-        $("#tab-5515").load(location.href+" #tab-5515>*","");
       }, 1000);  
     </script> 
     <meta name="theme-color" content="#478ac9">
@@ -31,7 +34,7 @@
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   </head>
-  <body data-home-page="settings.html" data-home-page-title="Mr.Elk | Settings" class="u-body u-xl-mode" data-lang="en">
+  <body data-home-page="settings.html" data-home-page-title="Mr.Elk | Nodes Metrics" class="u-body u-xl-mode" data-lang="en">
     <header class="u-clearfix u-grey-90 u-header u-sticky u-sticky-466c" id="sec-c265" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
       <div class="u-clearfix u-sheet u-valign-middle-lg u-sheet-1" id="connection_status">
         <a href="/" class="u-image u-logo u-image-1" data-image-width="1287" data-image-height="1500">
@@ -53,20 +56,17 @@
             <p class="u-align-left u-custom-font u-text u-text-1">Each tab will show you a specific type of metrics for all your nodes.</p>
           </div>
         </div>
-        <div class="u-tabs u-tabs-1" id="tabs">
+        <div class="u-tabs u-tabs-1">
           <ul class="u-tab-list u-unstyled" role="tablist">
-            <li class="u-tab-item" role="presentation" id="tab_1">
-              <a class="active u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-1" id="link-tab-cdf7" href="#tab-cdf7" role="tab" aria-controls="tab-cdf7" aria-selected="true">Stats</a>
+            <li class="u-tab-item" role="presentation">
+              <a class=" active u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-1" id="link-tab-5000" href="#tab-5000" role="tab" aria-controls="tab-5000" aria-selected="true">General</a>
             </li>
-            <li class="u-tab-item" role="presentation" id="tab_2">
-              <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-5515" href="#tab-5515" role="tab" aria-controls="tab-5515" aria-selected="false">Metrics</a>
-            </li>
-            <li class="u-tab-item" role="presentation" id="tab_3">
-              <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-5516" href="#tab-5516" role="tab" aria-controls="tab-5516" aria-selected="false">Index Metrics</a>
+            <li class="u-tab-item" role="presentation">
+              <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-5001" href="#tab-5001" role="tab" aria-controls="tab-5001" aria-selected="false">Thread Pool</a>
             </li>
           </ul>
           <div class="u-tab-content">
-            <div class="u-container-style u-tab-active u-tab-pane" id="tab-cdf7" role="tabpanel" aria-labelledby="link-tab-cdf7">
+            <div class="u-container-style u-tab-active u-tab-pane" id="tab-5000" role="tabpanel" aria-labelledby="link-tab-5000">
               <div class="u-container-layout u-valign-top u-container-layout-2">
                 <div class="u-form u-form-1  u-custom-font u-text u-text-1" style="font-size: 14px;">
                   <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
@@ -88,43 +88,300 @@
                 </div>
               </div>
             </div>
-            <div class="u-container-style u-tab-pane" id="tab-5515" role="tabpanel" aria-labelledby="link-tab-5515" >
+            <div class="u-container-style u-tab-pane" id="tab-5001" role="tabpanel" aria-labelledby="link-tab-5001" >
               <div class="u-container-layout u-valign-top u-container-layout-3">
                 <div class="u-form u-form-2 u-custom-font u-text u-text-1" style="font-size: 14px;">
-                  <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
-                    <div class="u-form-group u-form-name u-label-left">
-                      <label for="name-b4a5" class="u-label">Elastic <br> URL</label>
-                      <input type="text" placeholder="http://elasticsearch:9200" value="{{ config['elasticsearch.url'] }}" id="name-b4a5" name="url" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="">
-                    </div>
-                    <div class="u-form-email u-form-group u-label-left">
-                      <label for="email-b4a5" class="u-label">Elastic Username</label>
-                      <input type="text" placeholder="elastic" value="{{ config['elasticsearch.username'] }}" id="email-b4a5" name="username" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="">
-                    </div>
-                    <div class="u-form-group u-label-left u-form-group-6">
-                      <label for="text-eaf2" class="u-label">Elastic Password</label>
-                      <input type="password" placeholder="" value="{{ config['elasticsearch.password'] }}" id="text-eaf2" name="password" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15">
-                    </div>
-                    <div class="u-form-group u-label-left u-form-group-7">
-                      <label for="text-7d4a" class="u-label">PEM <br> Path</label>
-                      <input type="text" placeholder="/path/to/certificate" value="{{ config['elasticsearch.ssl.certificateAuthorities'] }}" id="text-7d4a" name="text-1" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15">
-                    </div>
-                    <div class="u-form-checkbox u-form-group u-form-group-8">
-                      <input type="checkbox" id="checkbox-cd3e" name="checkbox" value="On" checked>
-                      <label for="checkbox-cd3e" class="u-label">Verify SSL</label>
-                    </div>
-                    <div class="u-form-group u-form-submit u-label-left">
-                      <label class="u-label u-label-9"></label>
-                      <div class="u-align-left u-btn-submit-container">
-                        <a href="#" class="u-btn u-btn-submit u-button-style u-radius-15 u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2">Save</a>
+                  <div class="u-tabs u-tabs-1">
+                    <ul class="u-tab-list u-unstyled" role="tablist">
+                      <li class="u-tab-item" role="presentation">
+                        <a class="active u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-1" id="link-tab-5999" href="#tab-5999" role="tab" aria-controls="tab-5999" aria-selected="true">All</a>
+                      </li>
+                      <li class="u-tab-item" role="presentation">
+                        <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-6000" href="#tab-6000" role="tab" aria-controls="tab-6000" aria-selected="false">Write</a>
+                      </li>
+                      <li class="u-tab-item" role="presentation">
+                        <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-6001" href="#tab-6001" role="tab" aria-controls="tab-6001" aria-selected="false">Search</a>
+                      </li>
+                      <li class="u-tab-item" role="presentation" id="tab_23">
+                        <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-6002" href="#tab-6002" role="tab" aria-controls="tab-6002" aria-selected="false">Watcher</a>
+                      </li>
+                      <li class="u-tab-item" role="presentation" id="tab_24">
+                        <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-6003" href="#tab-6003" role="tab" aria-controls="tab-6003" aria-selected="false">Management</a>
+                      </li>
+                      <li class="u-tab-item" role="presentation" id="tab_25">
+                        <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-6001" href="#tab-6004" role="tab" aria-controls="tab-6004" aria-selected="false">System</a>
+                      </li>
+                      <li class="u-tab-item" role="presentation" id="tab_26">
+                        <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-6002" href="#tab-6005" role="tab" aria-controls="tab-6005" aria-selected="false">Machine Learning</a>
+                      </li>
+                      <li class="u-tab-item" role="presentation" id="tab_27">
+                        <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-6002" href="#tab-6006" role="tab" aria-controls="tab-6006" aria-selected="false">Other</a>
+                      </li>
+                    </ul>
+                    <div class="u-tab-content">
+                      <div class="u-container-style u-tab-active u-tab-pane" id="tab-5999" role="tabpanel" aria-labelledby="link-tab-5999">
+                        <div class="u-container-layout u-valign-top u-container-layout-2">
+                          <div class="u-form u-form-1  u-custom-font u-text u-text-1" style="font-size: 14px;">
+                            <script>
+                              setInterval
+                              (function() {
+                              $("#tab-5999").load(location.href+" #tab-5999>*","");
+                              }, 1000);  
+                            </script> 
+                                <table class="table">
+                                  <thead class="u-custom-font" style=" color: white;">
+                                    <tr>
+                                      {% for header in table_headers %}
+                                        <th ><strong>{{ header }}</strong></th>
+                                      {% endfor %}
+                                    </tr>
+                                  </thead>
+                                  <tbody calss="u-custom-font u-text u-text-1">
+                                    {% for data in table_data %}
+                                        <tr>
+                                          {% for _,value in data.items() %}
+                                            <td>{{ value }}</td>
+                                          {% endfor %}
+                                        </tr>
+                                    {% endfor %}
+                                  </tbody>
+                                </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-container-style u-tab-active u-tab-pane" id="tab-6000" role="tabpanel" aria-labelledby="link-tab-6000">
+                        <div class="u-container-layout u-valign-top u-container-layout-2">
+                          <div class="u-form u-form-1  u-custom-font u-text u-text-1" style="font-size: 14px;">
+                            <script>
+                              setInterval
+                              (function() {
+                              $("#tab-6000").load(location.href+" #tab-6000>*","");
+                              }, 1000);  
+                            </script> 
+                                <table class="table">
+                                  <thead class="u-custom-font" style=" color: white;">
+                                    <tr>
+                                      {% for header in table_headers %}
+                                        <th ><strong>{{ header }}</strong></th>
+                                      {% endfor %}
+                                    </tr>
+                                  </thead>
+                                  <tbody calss="u-custom-font u-text u-text-1">
+                                    {% for data in table_data %}
+                                      {% if data["name"] == "write" %}
+                                        <tr>
+                                          {% for _,value in data.items() %}
+                                            <td>{{ value }}</td>
+                                          {% endfor %}
+                                        </tr>
+                                      {% endif %}
+                                    {% endfor %}
+                                  </tbody>
+                                </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-container-style u-tab-pane" id="tab-6001" role="tabpanel" aria-labelledby="link-tab-6001" >
+                        <div class="u-container-layout u-valign-top u-container-layout-3">
+                          <div class="u-form u-form-2 u-custom-font u-text u-text-1" style="font-size: 14px;">
+                            <script>
+                              setInterval
+                              (function() {
+                              $("#tab-6001").load(location.href+" #tab-6001>*","");
+                              }, 1000);  
+                            </script> 
+                                <table class="table">
+                                  <thead class="u-custom-font" style=" color: white;">
+                                    <tr>
+                                      {% for header in table_headers %}
+                                        <th><strong>{{ header }}</strong></th>
+                                      {% endfor %}
+                                    </tr>
+                                  </thead>
+                                  <tbody calss="u-custom-font u-text u-text-1">
+                                    {% for data in table_data %}
+                                      {% if data["name"] == "search" %}
+                                        <tr>
+                                          {% for _,value in data.items() %}
+                                            <td>{{ value }}</td>
+                                          {% endfor %}
+                                        </tr>
+                                      {% endif %}
+                                    {% endfor %}
+                                  </tbody>
+                                </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-container-style u-tab-pane" id="tab-6002" role="tabpanel" aria-labelledby="link-tab-6002" >
+                        <div class="u-container-layout u-valign-top u-container-layout-3">
+                          <div class="u-form u-form-2 u-custom-font u-text u-text-1" style="font-size: 14px;">
+                            <script>
+                              setInterval
+                              (function() {
+                              $("#tab-6002").load(location.href+" #tab-6002>*","");
+                              }, 1000);  
+                            </script> 
+                                <table class="table">
+                                  <thead class="u-custom-font" style=" color: white;">
+                                    <tr>
+                                      {% for header in table_headers %}
+                                        <th><strong>{{ header }}</strong></th>
+                                      {% endfor %}
+                                    </tr>
+                                  </thead>
+                                  <tbody calss="u-custom-font u-text u-text-1">
+                                    {% for data in table_data %}
+                                      {% if data["name"] == "watcher" %}
+                                        <tr>
+                                          {% for _,value in data.items() %}
+                                            <td>{{ value }}</td>
+                                          {% endfor %}
+                                        </tr>
+                                      {% endif %}
+                                    {% endfor %}
+                                  </tbody>
+                                </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-container-style u-tab-pane" id="tab-6003" role="tabpanel" aria-labelledby="link-tab-6003" >
+                        <div class="u-container-layout u-valign-top u-container-layout-3">
+                          <div class="u-form u-form-2 u-custom-font u-text u-text-1" style="font-size: 14px;">
+                            <script>
+                              setInterval
+                              (function() {
+                                $("#tab-6003").load(location.href+" #tab-6003>*","");
+                              }, 1000);  
+                            </script>
+                            <table class="table">
+                              <thead class="u-custom-font" style=" color: white;">
+                                <tr>
+                                  {% for header in table_headers %}
+                                    <th><strong>{{ header }}</strong></th>
+                                  {% endfor %}
+                                </tr>
+                              </thead>
+                              <tbody calss="u-custom-font u-text u-text-1">
+                                {% for data in table_data %}
+                                  {% if data["name"] == "management" %}
+                                    <tr>
+                                      {% for _,value in data.items() %}
+                                        <td>{{ value }}</td>
+                                      {% endfor %}
+                                    </tr>
+                                  {% endif %}
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-container-style u-tab-pane" id="tab-6004" role="tabpanel" aria-labelledby="link-tab-6004" >
+                        <div class="u-container-layout u-valign-top u-container-layout-3">
+                          <div class="u-form u-form-2 u-custom-font u-text u-text-1" style="font-size: 14px;">
+                            <script>
+                              setInterval
+                              (function() {
+                                $("#tab-6004").load(location.href+" #tab-6004>*","");
+                              }, 1000);  
+                            </script> 
+                            <table class="table">
+                              <thead class="u-custom-font" style=" color: white;">
+                                <tr>
+                                  {% for header in table_headers %}
+                                    <th><strong>{{ header }}</strong></th>
+                                  {% endfor %}
+                                </tr>
+                              </thead>
+                              <tbody calss="u-custom-font u-text u-text-1">
+                                {% for data in table_data %}
+                                  {% if "system_" in data["name"]  %}
+                                  <tr>
+                                    {% for _,value in data.items() %}
+                                    <td>{{ value }}</td>
+                                    {% endfor %}
+                                  </tr>
+                                  {% endif %}
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-container-style u-tab-pane" id="tab-6005" role="tabpanel" aria-labelledby="link-tab-6005" >
+                        <div class="u-container-layout u-valign-top u-container-layout-3">
+                          <div class="u-form u-form-2 u-custom-font u-text u-text-1" style="font-size: 14px;">
+                            <script>
+                              setInterval
+                              (function() {
+                                $("#tab-6005").load(location.href+" #tab-6005>*","");
+                              }, 1000);  
+                            </script> 
+                            <table class="table">
+                              <thead class="u-custom-font" style=" color: white;">
+                                <tr>
+                                  {% for header in table_headers %}
+                                    <th><strong>{{ header }}</strong></th>
+                                  {% endfor %}
+                                </tr>
+                              </thead>
+                              <tbody calss="u-custom-font u-text u-text-1">
+                                {% for data in table_data %}
+                                  {% if "ml_" in data["name"]  %}
+                                  <tr>
+                                    {% for _,value in data.items() %}
+                                    <td>{{ value }}</td>
+                                    {% endfor %}
+                                  </tr>
+                                  {% endif %}
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-container-style u-tab-pane" id="tab-6006" role="tabpanel" aria-labelledby="link-tab-6006" >
+                        <div class="u-container-layout u-valign-top u-container-layout-3">
+                          <div class="u-form u-form-2 u-custom-font u-text u-text-1" style="font-size: 14px;">
+                            <script>
+                              setInterval
+                              (function() {
+                                $("#tab-6006").load(location.href+" #tab-6006>*","");
+                              }, 1000);  
+                            </script> 
+                            <table class="table">
+                              <thead class="u-custom-font" style=" color: white;">
+                                <tr>
+                                  {% for header in table_headers %}
+                                    <th><strong>{{ header }}</strong></th>
+                                  {% endfor %}
+                                </tr>
+                              </thead>
+                              <tbody calss="u-custom-font u-text u-text-1">
+                                {% for data in table_data %}
+                                  {% if "ml_" not in data["name"] and "system_" not in data["name"] and data["name"] != "management" and data["name"] != "search" and data["name"] != "watcher" and data["name"] != "write" %}
+                                  <tr>
+                                    {% for _,value in data.items() %}
+                                    <td>{{ value }}</td>
+                                    {% endfor %}
+                                  </tr>
+                                  {% endif %}
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           
         </div>
+      </div>
       </div>
     </section>
     
