@@ -118,7 +118,34 @@ def get_thread_pool(es: Elasticsearch):
     else:
         try:
             table_data = es.cat.thread_pool(format="json", h="node_name,ip,name,queue_size,queue,active,rejected,completed", s="nn,ip,c")
-            table_headers=list(table_data[0].keys())
+            table_headers=["node.name","node.ip","action","queue.size","queued","active","rejected","completed"]
+            return table_headers, table_data
+        except ElasticsearchException:
+            return None, None
+
+def get_node_stats(es: Elasticsearch):
+    """
+    """  
+    if es is None:
+        return None
+    else:
+        try:
+            table_data = es.nodes.stats(format="json",metric="os,jvm", filter_path="nodes.*.name,nodes.*.ip,nodes.*.version,nodes.*.roles,nodes.*.os.cpu.percent,nodes.*.os.mem.used_percent,nodes.*.jvm.mem.heap_used_percent")
+            table_headers=[" ","node.name","node.ip","node.id","node.roles","os.cpu.used","os.mem.used","jvm.mem.used"]
+            master_id=es.cat.master(format="json", filter_path="id")[0]["id"]
+            return table_headers, table_data, master_id
+        except ElasticsearchException:
+            return None, None
+
+def get_allocation(es: Elasticsearch):
+    """
+    """  
+    if es is None:
+        return None
+    else:
+        try:
+            table_data = es.cat.allocation(format="json", s="n,ip")
+            table_headers=["node.name","node.ip","shards","disk.used","disk.available","disk.total","disk.percent"]
             return table_headers, table_data
         except ElasticsearchException:
             return None, None

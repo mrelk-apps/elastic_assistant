@@ -59,7 +59,10 @@
         <div class="u-tabs u-tabs-1">
           <ul class="u-tab-list u-unstyled" role="tablist">
             <li class="u-tab-item" role="presentation">
-              <a class=" active u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-1" id="link-tab-5000" href="#tab-5000" role="tab" aria-controls="tab-5000" aria-selected="true">General</a>
+              <a class=" active u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-1" id="link-tab-5000" href="#tab-5000" role="tab" aria-controls="tab-5000" aria-selected="true">Stats</a>
+            </li>
+            <li class="u-tab-item" role="presentation">
+              <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-5002" href="#tab-5002" role="tab" aria-controls="tab-5002" aria-selected="false">Allocation</a>
             </li>
             <li class="u-tab-item" role="presentation">
               <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-5001" href="#tab-5001" role="tab" aria-controls="tab-5001" aria-selected="false">Thread Pool</a>
@@ -69,22 +72,71 @@
             <div class="u-container-style u-tab-active u-tab-pane" id="tab-5000" role="tabpanel" aria-labelledby="link-tab-5000">
               <div class="u-container-layout u-valign-top u-container-layout-2">
                 <div class="u-form u-form-1  u-custom-font u-text u-text-1" style="font-size: 14px;">
-                  <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
-                    <div class="u-form-group u-form-name u-label-left">
-                      <label for="name-b4a5" class="u-label">Server Host</label>
-                      <input type="text" placeholder="0.0.0.0" value="{{ config['server.host'] }}" id="name-b4a5" name="host" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="">
-                    </div>
-                    <div class="u-form-email u-form-group u-label-left">
-                      <label class="u-label">Server Port</label>
-                      <input type="number" placeholder="9820" value="{{ config['server.port'] }}" id="email-b4a5" name="port" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="">
-                    </div>
-                    <div class="u-form-group u-form-submit u-label-left">
-                      <label class="u-label u-label-3"></label>
-                      <div class="u-align-left u-btn-submit-container">
-                        <a href="#" class="u-btn u-btn-submit u-button-style u-radius-15 u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2">Save</a>
-                      </div>
-                    </div>
-                  </form>
+                  <script>
+                    setInterval
+                    (function() {
+                    $("#tab-5000").load(location.href+" #tab-5000>*","");
+                    }, 1000);  
+                  </script> 
+                      <table class="table">
+                        <thead class="u-custom-font" style=" color: white;">
+                          <tr>
+                            {% for header in node_stats_headers %}
+                              <th ><strong>{{ header }}</strong></th>
+                            {% endfor %}
+                          </tr>
+                        </thead>
+                        <tbody calss="u-custom-font u-text u-text-1">
+                          {% for node in node_stats_data["nodes"] %}
+                            <tr>    
+                              {% if master_id == node %}
+                                <td>*</td>
+                              {% endif %}
+                                  <td>{{ node_stats_data["nodes"][node]["name"] }}</td>
+                                  <td>{{ node_stats_data["nodes"][node]["ip"].split(":")[0] }}</td>
+                                  <td>{{ node }}</td>
+                                  <td>{{ node_stats_data["nodes"][node]["roles"] }}</td>
+                                  <td>{{ node_stats_data["nodes"][node]["os"]["cpu"]["percent"] }}%</td>
+                                  <td>{{ node_stats_data["nodes"][node]["os"]["mem"]["used_percent"] }}%</td>
+                                  <td>{{ node_stats_data["nodes"][node]["jvm"]["mem"]["heap_used_percent"] }}%</td>
+                              </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+              </div>
+            </div>
+            <div class="u-container-style u-tab-pane" id="tab-5002" role="tabpanel" aria-labelledby="link-tab-5002">
+              <div class="u-container-layout u-valign-top u-container-layout-2">
+                <div class="u-form u-form-1  u-custom-font u-text u-text-1" style="font-size: 14px;">
+                  <script>
+                    setInterval
+                    (function() {
+                    $("#tab-5002").load(location.href+" #tab-5002>*","");
+                    }, 1000);  
+                  </script> 
+                      <table class="table">
+                        <thead class="u-custom-font" style=" color: white;">
+                          <tr>
+                            {% for header in allocation_headers %}
+                              <th ><strong>{{ header }}</strong></th>
+                            {% endfor %}
+                          </tr>
+                        </thead>
+                        <tbody calss="u-custom-font u-text u-text-1">
+                          {% for node in allocation_data %}
+                            <tr>    
+                                  <td>{{ node["node"] }}</td>
+                                  <td>{{ node["ip"].split(":")[0] }}</td>
+                                  <td>{{ node["shards"] }}</td>
+                                  <td>{{ node["disk.used"] }}</td>
+                                  <td>{{ node["disk.avail"] }}</td>
+                                  <td>{{ node["disk.total"] }}</td>
+                                  <td>{{ node["disk.percent"] }}%</td>
+                              </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
                 </div>
               </div>
             </div>
@@ -131,13 +183,13 @@
                                 <table class="table">
                                   <thead class="u-custom-font" style=" color: white;">
                                     <tr>
-                                      {% for header in table_headers %}
+                                      {% for header in thread_pool_headers %}
                                         <th ><strong>{{ header }}</strong></th>
                                       {% endfor %}
                                     </tr>
                                   </thead>
                                   <tbody calss="u-custom-font u-text u-text-1">
-                                    {% for data in table_data %}
+                                    {% for data in thread_pool_data %}
                                         <tr>
                                           {% for _,value in data.items() %}
                                             <td>{{ value }}</td>
@@ -161,13 +213,13 @@
                                 <table class="table">
                                   <thead class="u-custom-font" style=" color: white;">
                                     <tr>
-                                      {% for header in table_headers %}
+                                      {% for header in thread_pool_headers %}
                                         <th ><strong>{{ header }}</strong></th>
                                       {% endfor %}
                                     </tr>
                                   </thead>
                                   <tbody calss="u-custom-font u-text u-text-1">
-                                    {% for data in table_data %}
+                                    {% for data in thread_pool_data %}
                                       {% if data["name"] == "write" %}
                                         <tr>
                                           {% for _,value in data.items() %}
@@ -193,13 +245,13 @@
                                 <table class="table">
                                   <thead class="u-custom-font" style=" color: white;">
                                     <tr>
-                                      {% for header in table_headers %}
+                                      {% for header in thread_pool_headers %}
                                         <th><strong>{{ header }}</strong></th>
                                       {% endfor %}
                                     </tr>
                                   </thead>
                                   <tbody calss="u-custom-font u-text u-text-1">
-                                    {% for data in table_data %}
+                                    {% for data in thread_pool_data %}
                                       {% if data["name"] == "search" %}
                                         <tr>
                                           {% for _,value in data.items() %}
@@ -225,13 +277,13 @@
                                 <table class="table">
                                   <thead class="u-custom-font" style=" color: white;">
                                     <tr>
-                                      {% for header in table_headers %}
+                                      {% for header in thread_pool_headers %}
                                         <th><strong>{{ header }}</strong></th>
                                       {% endfor %}
                                     </tr>
                                   </thead>
                                   <tbody calss="u-custom-font u-text u-text-1">
-                                    {% for data in table_data %}
+                                    {% for data in thread_pool_data %}
                                       {% if data["name"] == "watcher" %}
                                         <tr>
                                           {% for _,value in data.items() %}
@@ -257,13 +309,13 @@
                             <table class="table">
                               <thead class="u-custom-font" style=" color: white;">
                                 <tr>
-                                  {% for header in table_headers %}
+                                  {% for header in thread_pool_headers %}
                                     <th><strong>{{ header }}</strong></th>
                                   {% endfor %}
                                 </tr>
                               </thead>
                               <tbody calss="u-custom-font u-text u-text-1">
-                                {% for data in table_data %}
+                                {% for data in thread_pool_data %}
                                   {% if data["name"] == "management" %}
                                     <tr>
                                       {% for _,value in data.items() %}
@@ -289,13 +341,13 @@
                             <table class="table">
                               <thead class="u-custom-font" style=" color: white;">
                                 <tr>
-                                  {% for header in table_headers %}
+                                  {% for header in thread_pool_headers %}
                                     <th><strong>{{ header }}</strong></th>
                                   {% endfor %}
                                 </tr>
                               </thead>
                               <tbody calss="u-custom-font u-text u-text-1">
-                                {% for data in table_data %}
+                                {% for data in thread_pool_data %}
                                   {% if "system_" in data["name"]  %}
                                   <tr>
                                     {% for _,value in data.items() %}
@@ -321,13 +373,13 @@
                             <table class="table">
                               <thead class="u-custom-font" style=" color: white;">
                                 <tr>
-                                  {% for header in table_headers %}
+                                  {% for header in thread_pool_headers %}
                                     <th><strong>{{ header }}</strong></th>
                                   {% endfor %}
                                 </tr>
                               </thead>
                               <tbody calss="u-custom-font u-text u-text-1">
-                                {% for data in table_data %}
+                                {% for data in thread_pool_data %}
                                   {% if "ml_" in data["name"]  %}
                                   <tr>
                                     {% for _,value in data.items() %}
@@ -353,13 +405,13 @@
                             <table class="table">
                               <thead class="u-custom-font" style=" color: white;">
                                 <tr>
-                                  {% for header in table_headers %}
+                                  {% for header in thread_pool_headers %}
                                     <th><strong>{{ header }}</strong></th>
                                   {% endfor %}
                                 </tr>
                               </thead>
                               <tbody calss="u-custom-font u-text u-text-1">
-                                {% for data in table_data %}
+                                {% for data in thread_pool_data %}
                                   {% if "ml_" not in data["name"] and "system_" not in data["name"] and data["name"] != "management" and data["name"] != "search" and data["name"] != "watcher" and data["name"] != "write" %}
                                   <tr>
                                     {% for _,value in data.items() %}
@@ -384,8 +436,6 @@
       </div>
       </div>
     </section>
-    
-    
     <footer class="u-align-center u-clearfix u-footer u-grey-80" id="sec-0c0d"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1" style="font-size: 12px;"> © 2022 MR.ELK - All Rights Reserved</p>
       </div></footer>

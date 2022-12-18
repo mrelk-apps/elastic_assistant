@@ -1,0 +1,8 @@
+Connected
+boBD3S50RymjwUBs9ameRg
+kali-node
+10.0.0.12:9300
+['data', 'ingest', 'master']
+4
+98
+29

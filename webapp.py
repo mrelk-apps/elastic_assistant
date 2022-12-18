@@ -48,11 +48,19 @@ def nodes():
                                         config['elasticsearch.password'], 
                                         config['elasticsearch.ssl.certificateAuthorities'], 
                                         config['elasticsearch.ssl.verificationMode'])
-    table_headers, table_data=get_thread_pool(es)
+    node_stats_headers, node_stats_data, master_id = get_node_stats(es)
+    allocation_headers, allocation_data = get_allocation(es)
+    thread_pool_headers, thread_pool_data = get_thread_pool(es)
+
     return render_template('Nodes.html', 
                 connection_status=connection_status,
-                table_headers=table_headers,
-                table_data=table_data)
+                node_stats_headers=node_stats_headers,
+                node_stats_data=node_stats_data,
+                master_id=master_id,
+                allocation_headers=allocation_headers,
+                allocation_data=allocation_data,
+                thread_pool_headers=thread_pool_headers,
+                thread_pool_data=thread_pool_data)
 
 if __name__ == '__main__':
     arguments, arg_valid = validate_arugments(sys.argv)
