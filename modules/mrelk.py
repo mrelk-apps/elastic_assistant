@@ -149,3 +149,16 @@ def get_allocation(es: Elasticsearch):
             return table_headers, table_data
         except ElasticsearchException:
             return None, None
+
+def get_index_stats(es: Elasticsearch):
+    """
+    """  
+    if es is None:
+        return None
+    else:
+        try:
+            table_data = es.cat.indices(format="json", expand_wildcards="all")
+            table_headers=["index","uuid","health","status","primaries","replicas","documents","size"]
+            return table_headers, table_data
+        except ElasticsearchException:
+            return None, None

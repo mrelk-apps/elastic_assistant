@@ -4,13 +4,18 @@
     <meta charset="utf-8">
     <meta name="keywords" content="MR.ELK">
     <meta name="description" content="">
-    <title>Mr.Elk | Home</title>
+    <title>Mr.Elk | Index Metrics</title>
     <link rel = "icon" href="{{ url_for('static', filename= 'images/logo5.png') }}" type = "image/x-icon">
 
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/nicepage.css') }}" media="screen">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/Home.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/settings.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/dataTables.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/bootstrap.css') }}" media="screen">
     <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/jquery.js') }}" "="" defer=""></script>
     <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/nicepage.js') }}" "="" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/dataTables.js') }}" "="" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/bootstrap.bundle.js') }}" "="" defer=""></script>
         
     <script type="application/ld+json">{
 		"@context": "https://www.mrelk.org",
@@ -18,18 +23,12 @@
 		"name": "Mr.Elk_Elastic_Assistant",
 		"logo": "{{ url_for('static', filename= 'images/logo5.png') }}"}
     </script>
-    <script>
-      setInterval(function() {
-        $("#connection_status").load(location.href+" #connection_status>*","");
-        $("#cluster_overview").load(location.href+" #cluster_overview>*","");
-      }, 5000);  
-    </script>         
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Mr.Elk">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   </head>
-  <body data-home-page="index.html" data-home-page-title="Mr.Elk | Home" class="u-body u-xl-mode" data-lang="en">
+  <body data-home-page="index.html" data-home-page-title="Mr.Elk | Index Metrics" class="u-body u-xl-mode" data-lang="en">
     <header class="u-clearfix u-grey-90 u-header u-sticky u-sticky-466c" id="sec-c265" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
       <div class="u-clearfix u-sheet u-valign-middle-lg u-sheet-1" id="connection_status">
         <a href="/" class="u-image u-logo u-image-1" data-image-width="1287" data-image-height="1500">
@@ -38,114 +37,122 @@
         <p class="u-custom-font u-text u-text-default u-text-1"><a href="/" ><span class="u-text-custom-color-2">MR. ELK</span></a></p>
         <p class="u-custom-font u-text u-text-default u-text-white u-text-2">Elastic Assistent 1.0.0-Alpha</p>
         {% if connection_status == "Connected" %}
-          <p class="u-btn u-radius-15 u-btn-1" style="background-color: #6CC24A; color: white">{{ connection_status }}</p>
+          <p class="u-btn u-radius-15 u-btn-1" style="background-color: #6CC24A; color: white;">{{ connection_status }}</p>
         {% else %}
-          <p class="u-btn u-radius-15 u-btn-1" style="background-color: #db545a; color: white">{{ connection_status }}</p>
+          <p class="u-btn u-radius-15 u-btn-1" style="background-color: #db545a; color: white;">{{ connection_status }}</p>
         {% endif %}
       </div>
     </header>
     <section class="u-align-center u-clearfix u-grey-90 u-section-1" id="sec-ea4d">
-      
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-border-2 u-border-custom-color-1 u-container-style u-group u-radius-10 u-shape-round u-white u-group-1">
-          <div class="u-container-layout u-valign-middle u-container-layout-1">
-            <p class="u-align-left u-custom-font u-text u-text-1">Hi, am
-            <span class="u-text-custom-color-1" style="font-weight: 700;">MR. ELK</span>,
-            <br>Am here to assist you maintain your cluster with the lowest effort possible,
-            <br>What you need to do today ?
-            </p>
+          <div class="u-container-layout u-container-layout-1">
+            <p class="u-align-left u-custom-font u-text u-text-1">Each tab will show you a indicies and all the metrics related to it.</p>
           </div>
         </div>
-        <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
-          <div class="u-layout">
-            <div class="u-layout-row">
-              <div class="u-container-style u-layout-cell u-shape-rectangle u-size-22-md u-size-22-sm u-size-22-xs u-size-29-xl u-size-32-lg u-layout-cell-1">
-                <div class="u-container-layout u-container-layout-2">
-                  <div class="u-layout-grid u-list u-list-1">
-                    <div class="u-repeater u-repeater-1">
-                      <a href="nodes" class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-3">
-                        <div class="u-container-layout u-similar-container u-container-layout-1" style="padding-top: 25%;">
-                          <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-2">
-                            <img src="{{ url_for('static', filename= 'images/1208913-2ac3a913.png') }}" alt="">
-                          </span>
-                          <p class="u-align-center u-custom-font u-text u-text-5 u-text-white">Nodes Stats</p>
-                        </div>
-                      </a>
-                      <a href="index" class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-3">
-                        <div class="u-container-layout u-similar-container u-container-layout-2" style="padding-top: 25%;">
-                          <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-3" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-                            <img src="{{ url_for('static', filename= 'images/1265775-76a3e5a6.png') }}" alt="">
-                          </span>
-                          <p class="u-align-center u-custom-font u-text u-text-4 u-text-white">Index Stats</p>
-                        </div>
-                    </a>
-                      <a href="shards" class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-3">
-                        <div class="u-container-layout u-similar-container u-container-layout-3" style="padding-top: 25%;">
-                          <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-4" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-                            <img src="{{ url_for('static', filename= 'images/3051927-07348805.png') }}" alt="">
-                          </span>
-                          <p class="u-align-center u-custom-font u-text u-text-5  u-text-white">Move &amp; Assign Shards</p>
-                      </div>
-                      </a>
-                      <a href="settings" class="u-align-left u-border-2 u-border-custom-color-2 u-container-style u-custom-item u-hover-feature u-list-item u-radius-15 u-repeater-item u-shape-round u-list-item-3">
-                        <div class="u-container-layout u-similar-container u-container-layout-3" style="padding-top: 25%;">
-                          <span class="u-file-icon u-hover-feature u-icon u-text-white u-icon-4"  data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
-                            <img src="{{ url_for('static', filename= 'images/563541-8bf33ff1.png') }}" alt="">
-                          </span>
-                          <p class="u-align-center u-custom-font u-text u-text-5 u-text-white" >Settings</p>
-                      </div>
-                    </a>
-                    </div>
-                  </div>
+        <div class="u-tabs u-tabs-1">
+          <ul class="u-tab-list u-unstyled" role="tablist">
+            <li class="u-tab-item" role="presentation">
+              <a class=" active u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-1" id="link-tab-1000" href="#tab-1000" role="tab" aria-controls="tab-1000" aria-selected="true">General</a>
+            </li>
+            <li class="u-tab-item" role="presentation">
+              <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-1001" href="#tab-1001" role="tab" aria-controls="tab-1001" aria-selected="false">System</a>
+            </li>
+          </ul>
+          <div class="u-tab-content">
+            <div class="u-container-style u-tab-active u-tab-pane" id="tab-1000" role="tabpanel" aria-labelledby="link-tab-1000">
+              <div class="u-container-layout u-valign-top u-container-layout-2">
+                <div class="u-form u-form-1  u-custom-font u-text u-text-1" style="font-size: 14px;">
+                  <script>
+                    setInterval
+                    (function() {
+                    $("#tab-1000").load(location.href+" #tab-1000>*","");
+                    }, 1000);  
+                  </script> 
+                      <table class="table">
+                        <thead class="u-custom-font" style=" color: white;">
+                          <tr>
+                            {% for header in index_stats_headers %}
+                              <th ><strong>{{ header }}</strong></th>
+                            {% endfor %}
+                          </tr>
+                        </thead>
+                        <tbody calss="u-custom-font u-text u-text-1">
+                          {% for index in index_stats_data %}
+                            <tr>    
+                              {% if index["index"][0] != "." %}
+                              <td>{{ index["index"] }}</td>
+                              <td>{{ index["uuid"] }}</td>
+                              {% if index["health"] == "green" %}
+                                  <td style=" color:#6CC24A">{{ index["health"] }}</td>
+                                {% elif index["health"] == "yellow" %}
+                                  <td style=" color:#fff200">{{ index["health"] }}</td>
+                                {% elif index["health"] == "red" %}
+                                  <td style=" color:#db545a">{{ index["health"] }}</td>
+                                {% endif %}
+                                <td>{{ index["status"] }}</td>
+                              <td>{{ index["pri"] }}</td>
+                              <td>{{ index["rep"] }}</td>
+                              <td>{{ index["docs.count"] }}</td>
+                              <td>{{ index["store.size"] }}</td>
+                              {% endif %}
+                              </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
                 </div>
               </div>
-              <div class="u-container-style u-grey-80 u-layout-cell u-radius-15 u-shape-round u-size-28-lg u-size-31-xl u-size-38-md u-size-38-sm u-size-38-xs u-layout-cell-2" id="cluster_overview">
-                <div class="u-border-2 u-border-custom-color-2 u-container-layout u-container-layout-9">
-                          
-                  <p class="u-custom-font u-text u-text-default u-text-8">
-                    <span style="font-size: 26px;">Cluster Overview:</span></p>
-                  {% if connection_status == "Connected" %}
-                    {% if cluster_status["status"] == "green" %}
-                      <p class="u-align-left u-custom-font u-text u-text-default u-text-8"><a class="u-btn-1 u-radius-10" style="background-color: #6CC24A; color: #6CC24A">.....</a> {{ cluster_status["cluster_name"] }}
-                    {% elif cluster_status["status"] == "yellow" %}
-                      <p class="u-align-left u-text-cust u-custom-font u-text u-text-default u-text-8"><a class="u-btn-1 u-radius-10" style="background-color: #fff200; color: #fff200">.....</a> {{ cluster_status["cluster_name"] }}
-                    {% elif cluster_status["status"] == "red" %}
-                      <p class="u-align-left u-custom-font u-text u-text-default u-text-8"><a class="u-btn-1 u-radius-10" style="background-color: #db545a; color: #db545a">.....</a> {{ cluster_status["cluster_name"] }}
-                    {% endif %}
-                    <br><span style="font-size: 16px;">&nbsp;&nbsp;- Nodes: {{ cluster_status["number_of_nodes"] }} <span style="font-size: 14px;">[Data: {{ cluster_status["number_of_data_nodes"] }}]</span></span>
-                    <br><span style="font-size: 16px;">&nbsp;&nbsp;- Active Shards: {{ cluster_status["active_shards"] }} <span style="font-size: 14px;">[Primary: {{ cluster_status["active_primary_shards"] }}, Replica: {{ cluster_status["active_shards"] - cluster_status["active_primary_shards"] }}]</span></span>
-                    <br><span style="font-size: 16px;">&nbsp;&nbsp;- Inactive Shards: {{ cluster_status["unassigned_shards"] + cluster_status["initializing_shards"] }} <span style="font-size: 14px;">[Unassigned: {{ cluster_status["unassigned_shards"] }}, Initializing: {{ cluster_status["initializing_shards"] }}]</span></span>
-                    <br><span style="font-size: 16px;">&nbsp;&nbsp;- Relocating Shards: {{ cluster_status["relocating_shards"] }}</span></p><br>
-                    {% if inactive_engines == 0 and active_engines >= 1 %}
-                      <p class="u-align-left u-custom-font u-text u-text-default u-text-8"><a class="u-btn-1 u-radius-10" style="background-color: #6CC24A; color: #6CC24A">.....</a> Watcher Engines: {{ active_engines }}
-                    {% elif inactive_engines > 0 and active_engines >= 1 %}
-                      <p class="u-align-left u-custom-font u-text u-text-default u-text-8"><a class="u-btn-1 u-radius-10" style="background-color: #fff200; color: #fff200">.....</a> Watcher Engines: {{ active_engines + inactive_engines }}
-                    {% elif inactive_engines == 0 and active_engines == 0 %}
-                      <p class="u-align-left u-custom-font u-text u-text-default u-text-8"><a class="u-btn-1 u-radius-10" style="background-color: #db545a; color: #db545a">.....</a> Watcher Engines: {{ inactive_engines }}
-                    {% endif %}
-  
-                    <span style="font-size: 16px;">&nbsp;&nbsp;[Active: {{ active_engines }}, Inactive: {{ inactive_engines }}]</span>
-                    {% if inactive_engines > 0 or active_engines > 0 %}
-                      {% for watcher in watchers_status %}
-                        <br><span style="font-size: 16px;">&nbsp;&nbsp;- Node: {{ watcher[0] }} [{{ watcher[1]["watcher_state"] }}]</span>
-                        <span style="font-size: 14px;">&nbsp;&nbsp;&nbsp;Watch Count: {{ watcher[1]["watch_count"] }}, Queued: {{ watcher[1]["execution_thread_pool"]["queue_size"] }} </span>
-                      {% endfor %}
-                    {% endif %}
-                    </p>
-                  {% else %}
-                    <p class="u-align-left u-custom-font u-text u-text-default u-text-8"><a class="u-btn-1 u-radius-10" style="background-color: #ffffff; color: #ffffff">.....</a> No Cluster Info.
-                    <br><span style="font-size: 16px;">&nbsp;&nbsp;Check configuration & make sure cluster is up and running.</span>
-                  {% endif %}
+            </div>
+            <div class="u-container-style u-tab-pane" id="tab-1001" role="tabpanel" aria-labelledby="link-tab-1001">
+              <div class="u-container-layout u-valign-top u-container-layout-2">
+                <div class="u-form u-form-1  u-custom-font u-text u-text-1" style="font-size: 14px;">
+                  <script>
+                    setInterval
+                    (function() {
+                    $("#tab-5002").load(location.href+" #tab-5002>*","");
+                    }, 1000);  
+                  </script> 
+                       <table class="table">
+                        <thead class="u-custom-font" style=" color: white;">
+                          <tr>
+                            {% for header in index_stats_headers %}
+                              <th ><strong>{{ header }}</strong></th>
+                            {% endfor %}
+                          </tr>
+                        </thead>
+                        <tbody calss="u-custom-font u-text u-text-1">
+                          {% for index in index_stats_data %}
+                            <tr>    
+                              {% if index["index"][0] == "." %}
+                                <td>{{ index["index"] }}</td>
+                                <td>{{ index["uuid"] }}</td>
+                                {% if index["health"] == "green" %}
+                                  <td style=" color:#6CC24A">{{ index["health"] }}</td>
+                                {% elif index["health"] == "yellow" %}
+                                  <td style=" color:#fff200">{{ index["health"] }}</td>
+                                {% elif index["health"] == "red" %}
+                                  <td style=" color:#db545a">{{ index["health"] }}</td>
+                                {% endif %}
+                                <td>{{ index["status"] }}</td>
+                                <td>{{ index["pri"] }}</td>
+                                <td>{{ index["rep"] }}</td>
+                                <td>{{ index["docs.count"] }}</td>
+                                <td>{{ index["store.size"] }}</td>
+                              {% endif %}
+                              </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      </div>
     </section>
-
     <footer class="u-align-center u-clearfix u-footer u-grey-80" id="sec-0c0d"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1" style="font-size: 12px;"> © 2022 MR.ELK - All Rights Reserved</p>
       </div></footer>
-  </body>
-</html>
+  
+</body></html>

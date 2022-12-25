@@ -21,7 +21,7 @@ def home():
         active_engines = ""
         watchers_status = ""
         inactive_engines = ""
-    return render_template('index.html', 
+    return render_template('home.html', 
                 connection_status=connection_status, 
                 cluster_status=cluster_status,
                 active_engines=active_engines,
@@ -40,8 +40,8 @@ def settings():
                 connection_status=connection_status,config=config)
 
 
-@app.route('/nodes')
-def nodes():
+@app.route('/nodes_view')
+def nodes_view():
     config, _ = read_config_yaml(arguments['conf.path'])
     es,connection_status = multi_url_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
@@ -52,7 +52,7 @@ def nodes():
         node_stats_headers, node_stats_data, master_id = get_node_stats(es)
         allocation_headers, allocation_data = get_allocation(es)
         thread_pool_headers, thread_pool_data = get_thread_pool(es)
-        return render_template('Nodes.html', 
+        return render_template('nodes.html', 
                     connection_status=connection_status,
                     node_stats_headers=node_stats_headers,
                     node_stats_data=node_stats_data,
@@ -66,7 +66,34 @@ def nodes():
         active_engines = ""
         watchers_status = ""
         inactive_engines = ""
+        return render_template('home.html', 
+                connection_status=connection_status, 
+                cluster_status=cluster_status,
+                active_engines=active_engines,
+                inactive_engines=inactive_engines,
+                watchers_status=watchers_status)
+
+@app.route('/index_view')
+def index_view():
+    config, _ = read_config_yaml(arguments['conf.path'])
+    es,connection_status = multi_url_connection(config['elasticsearch.url'], 
+                                        config['elasticsearch.username'], 
+                                        config['elasticsearch.password'], 
+                                        config['elasticsearch.ssl.certificateAuthorities'], 
+                                        config['elasticsearch.ssl.verificationMode'])
+    if connection_status == "Connected":
+        index_stats_headers, index_stats_data = get_index_stats(es)
         return render_template('index.html', 
+                    connection_status=connection_status,
+                    index_stats_headers=index_stats_headers,
+                    index_stats_data=index_stats_data
+                 )
+    else:
+        cluster_status = ""
+        active_engines = ""
+        watchers_status = ""
+        inactive_engines = ""
+        return render_template('home.html', 
                 connection_status=connection_status, 
                 cluster_status=cluster_status,
                 active_engines=active_engines,
