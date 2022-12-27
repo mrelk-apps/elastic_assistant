@@ -30,7 +30,7 @@ To run the app use the following command
     
 and make sure to install the following libraries 
 - elasticsearch==7.17.5
-- Flask==1.1.2
+- Flask==2.2.2
 - PyYAML==6.0
 - requests==2.28.1
 
