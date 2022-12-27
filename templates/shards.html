@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="MR.ELK">
     <meta name="description" content="">
-    <title>Mr.Elk | Index Metrics</title>
+    <title>Mr.Elk | Shards View</title>
     <link rel = "icon" href="{{ url_for('static', filename= 'images/logo5.png') }}" type = "image/x-icon">
 
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/nicepage.css') }}" media="screen">
@@ -28,7 +28,7 @@
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   </head>
-  <body data-home-page="index.html" data-home-page-title="Mr.Elk | Index Metrics" class="u-body u-xl-mode" data-lang="en">
+  <body data-home-page="shards.html" data-home-page-title="Mr.Elk | Shards View" class="u-body u-xl-mode" data-lang="en">
     <header class="u-clearfix u-grey-90 u-header u-sticky u-sticky-466c" id="sec-c265" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
       <div class="u-clearfix u-sheet u-valign-middle-lg u-sheet-1" id="connection_status">
         <a href="/" class="u-image u-logo u-image-1" data-image-width="1287" data-image-height="1500">
@@ -53,48 +53,50 @@
         <div class="u-tabs u-tabs-1">
           <ul class="u-tab-list u-unstyled" role="tablist">
             <li class="u-tab-item" role="presentation">
-              <a class=" active u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-1" id="link-tab-1000" href="#tab-1000" role="tab" aria-controls="tab-1000" aria-selected="true">General</a>
+              <a class=" active u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-1" id="link-tab-2000" href="#tab-2000" role="tab" aria-controls="tab-2000" aria-selected="true">General</a>
             </li>
             <li class="u-tab-item" role="presentation">
-              <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-1001" href="#tab-1001" role="tab" aria-controls="tab-1001" aria-selected="false">System</a>
+              <a class="u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2 u-custom-font u-tab-link u-tab-link-2" id="link-tab-2001" href="#tab-2001" role="tab" aria-controls="tab-2001" aria-selected="false">System</a>
             </li>
           </ul>
           <div class="u-tab-content">
-            <div class="u-container-style u-tab-active u-tab-pane" id="tab-1000" role="tabpanel" aria-labelledby="link-tab-1000">
+            <div class="u-container-style u-tab-active u-tab-pane" id="tab-2000" role="tabpanel" aria-labelledby="link-tab-2000">
               <div class="u-container-layout u-valign-top u-container-layout-2">
                 <div class="u-form u-form-1  u-custom-font u-text u-text-1" style="font-size: 14px;">
                   <script>
                     setInterval
                     (function() {
-                    $("#tab-1000").load(location.href+" #tab-1000>*","");
+                    $("#tab-2000").load(location.href+" #tab-2000>*","");
                     }, 1000);  
                   </script> 
                       <table class="table">
                         <thead class="u-custom-font" style=" color: white;">
                           <tr>
-                            {% for header in index_stats_headers %}
+                            {% for header in shards_headers %}
                               <th ><strong>{{ header }}</strong></th>
                             {% endfor %}
                           </tr>
                         </thead>
                         <tbody calss="u-custom-font u-text u-text-1">
-                          {% for index in index_stats_data %}
+                          {% for shard in shards_data %}
                             <tr>    
-                              {% if index["index"][0] != "." %}
-                              <td>{{ index["index"] }}</td>
-                              <td>{{ index["uuid"] }}</td>
-                              {% if index["health"] == "green" %}
-                                  <td style=" color:#6CC24A">{{ index["health"] }}</td>
-                                {% elif index["health"] == "yellow" %}
-                                  <td style=" color:#fff200">{{ index["health"] }}</td>
-                                {% elif index["health"] == "red" %}
-                                  <td style=" color:#db545a">{{ index["health"] }}</td>
+                              {% if shard["i"][0] != "." %}
+                                <td>{{ shard["i"] }}</td>
+                                <td>{{ shard["s"] }}</td>
+                                <td>{{ shard["p"] }}</td>
+                                {% if shard["st"] == "STARTED" %}
+                                  <td style=" color:#6CC24A">{{ shard["st"] }}</td>
+                                {% elif shard["st"] == "UNASSIGNED" %}
+                                  <td style=" color:#db545a">{{ shard["st"] }}</td>
+                                {% else %}
+                                  <td style=" color:#fff200">{{ shard["st"] }}</td>
                                 {% endif %}
-                                <td>{{ index["status"] }}</td>
-                              <td>{{ index["pri"] }}</td>
-                              <td>{{ index["rep"] }}</td>
-                              <td>{{ index["docs.count"] }}</td>
-                              <td>{{ index["store.size"] }}</td>
+                                <td>{{ shard["d"] }}</td>
+                                <td>{{ shard["sto"] }}</td>
+                                <td>{{ shard["gmto"] }}</td>
+                                <td>{{ shard["gto"] }}</td>
+                                <td>{{ shard["n"] }}</td>
+                                <td>{{ shard["ip"] }}</td>
                               {% endif %}
                               </tr>
                           {% endfor %}
@@ -103,41 +105,43 @@
                 </div>
               </div>
             </div>
-            <div class="u-container-style u-tab-pane" id="tab-1001" role="tabpanel" aria-labelledby="link-tab-1001">
+            <div class="u-container-style u-tab-pane" id="tab-2001" role="tabpanel" aria-labelledby="link-tab-2001">
               <div class="u-container-layout u-valign-top u-container-layout-2">
                 <div class="u-form u-form-1  u-custom-font u-text u-text-1" style="font-size: 14px;">
                   <script>
                     setInterval
                     (function() {
-                    $("#tab-1001").load(location.href+" #tab-1001>*","");
+                    $("#tab-2001").load(location.href+" #tab-2001>*","");
                     }, 1000);  
                   </script> 
                        <table class="table">
                         <thead class="u-custom-font" style=" color: white;">
                           <tr>
-                            {% for header in index_stats_headers %}
+                            {% for header in shards_headers %}
                               <th ><strong>{{ header }}</strong></th>
                             {% endfor %}
                           </tr>
                         </thead>
                         <tbody calss="u-custom-font u-text u-text-1">
-                          {% for index in index_stats_data %}
+                          {% for shard in shards_data %}
                             <tr>    
-                              {% if index["index"][0] == "." %}
-                                <td>{{ index["index"] }}</td>
-                                <td>{{ index["uuid"] }}</td>
-                                {% if index["health"] == "green" %}
-                                  <td style=" color:#6CC24A">{{ index["health"] }}</td>
-                                {% elif index["health"] == "yellow" %}
-                                  <td style=" color:#fff200">{{ index["health"] }}</td>
-                                {% elif index["health"] == "red" %}
-                                  <td style=" color:#db545a">{{ index["health"] }}</td>
+                              {% if shard["i"][0] == "." %}
+                                <td>{{ shard["i"] }}</td>
+                                <td>{{ shard["s"] }}</td>
+                                <td>{{ shard["p"] }}</td>
+                                {% if shard["st"] == "STARTED" %}
+                                  <td style=" color:#6CC24A">{{ shard["st"] }}</td>
+                                {% elif shard["st"] == "UNASSIGNED" %}
+                                  <td style=" color:#db545a">{{ shard["st"] }}</td>
+                                {% else %}
+                                  <td style=" color:#fff200">{{ shard["st"] }}</td>
                                 {% endif %}
-                                <td>{{ index["status"] }}</td>
-                                <td>{{ index["pri"] }}</td>
-                                <td>{{ index["rep"] }}</td>
-                                <td>{{ index["docs.count"] }}</td>
-                                <td>{{ index["store.size"] }}</td>
+                                <td>{{ shard["d"] }}</td>
+                                <td>{{ shard["sto"] }}</td>
+                                <td>{{ shard["gmto"] }}</td>
+                                <td>{{ shard["gto"] }}</td>
+                                <td>{{ shard["n"] }}</td>
+                                <td>{{ shard["ip"] }}</td>
                               {% endif %}
                               </tr>
                           {% endfor %}

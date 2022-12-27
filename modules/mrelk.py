@@ -162,3 +162,18 @@ def get_index_stats(es: Elasticsearch):
             return table_headers, table_data
         except ElasticsearchException:
             return None, None
+
+def get_shards(es: Elasticsearch):
+    """
+    """  
+    if es is None:
+        return None
+    else:
+        try:
+            table_data = es.cat.shards(format="json",h="i,s,p,st,d,sto,gmto,gto,n,ip",s="node,ip,index,store")
+            table_headers=["index","shard","pri/rep","state","documents","size","failed.ge.trequest","total.get.requests","node","ip"]
+            return table_headers, table_data
+        except ElasticsearchException:
+            return None, None
+
+

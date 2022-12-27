@@ -100,6 +100,33 @@ def index_view():
                 inactive_engines=inactive_engines,
                 watchers_status=watchers_status)
 
+@app.route('/shards_view')
+def shards_view():
+    config, _ = read_config_yaml(arguments['conf.path'])
+    es,connection_status = multi_url_connection(config['elasticsearch.url'], 
+                                        config['elasticsearch.username'], 
+                                        config['elasticsearch.password'], 
+                                        config['elasticsearch.ssl.certificateAuthorities'], 
+                                        config['elasticsearch.ssl.verificationMode'])
+    if connection_status == "Connected":
+        shards_headers, shards_data = get_shards(es)
+        return render_template('shards.html', 
+                    connection_status=connection_status,
+                    shards_headers=shards_headers,
+                    shards_data=shards_data
+                 )
+    else:
+        cluster_status = ""
+        active_engines = ""
+        watchers_status = ""
+        inactive_engines = ""
+        return render_template('home.html', 
+                connection_status=connection_status, 
+                cluster_status=cluster_status,
+                active_engines=active_engines,
+                inactive_engines=inactive_engines,
+                watchers_status=watchers_status)
+
 if __name__ == '__main__':
     arguments, arg_valid = validate_arugments(sys.argv)
     if arg_valid == "Valid":
