@@ -57,7 +57,7 @@ def establish_connection(url: str, username: str, password: str, certificate_pat
                 ssl_context=certificate,
                 maxsize=connection_limit,
                 http_compress=True)
-        elif verify == False:
+        elif verify == "none":
             es = Elasticsearch(
                 url,
                 http_auth=(username, password),
