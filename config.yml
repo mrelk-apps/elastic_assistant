@@ -5,19 +5,19 @@ server.port: 9820
 # The default is 'localhost', which usually means remote machines will not be able to connect.
 # To allow connections from remote users, set this parameter to a non-loopback address.
 # non-loopback address example: server.host: "0.0.0.0"
-server.host: "0.0.0.0"
+server.host: "localhost"
 
 # The URLs of the Elasticsearch instances to use for all your queries.
 # can use more than 1 node at a time to round robin on them
 # Example: elasticsearch.url: ["http://nod1:9200","http://nod2:9200"]
 # NOTE: [Scheme://IP:Port] MUST BE SPECIFIED
-elasticsearch.url: ["http://10.0.0.12:9200"]
+elasticsearch.url: ["http://elasticsearch:9200"]
 
 # If your Elasticsearch is protected with basic authentication, these settings provide
 # the username and password that the Mr.Elk server uses to perform queries on Elasticsearch
 # default are empty strings
-elasticsearch.username: "elastic"
-elasticsearch.password: "elastic"
+elasticsearch.username: ""
+elasticsearch.password: ""
 
 # Optional setting that enables you to specify a path to the PEM file for the certificate
 # authority for your Elasticsearch instance.
