@@ -127,7 +127,7 @@
                           {% for node in allocation_data %}
                             <tr>    
                                   <td>{{ node["node"] }}</td>
-                                  <td>{{ node["ip"].split(":")[0] }}</td>
+                                  <td>{{ node["ip"] }}</td>
                                   <td>{{ node["shards"] }}</td>
                                   <td>{{ node["disk.used"] }}</td>
                                   <td>{{ node["disk.avail"] }}</td>

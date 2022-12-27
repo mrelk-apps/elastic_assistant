@@ -98,17 +98,6 @@ def get_watcher_engine_status(es: Elasticsearch):
             return 0, 0, None
 
 
-def get_nodes_stats(es: Elasticsearch):
-    """
-    """
-    if es is None:
-        return None
-    else:
-        try:
-            es.nodes.stats()
-            
-        except ElasticsearchException:
-            return None
 
 def get_thread_pool(es: Elasticsearch):
     """
