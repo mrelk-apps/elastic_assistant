@@ -158,7 +158,7 @@ def get_index_stats(es: Elasticsearch):
     else:
         try:
             table_data = es.cat.indices(format="json", expand_wildcards="all")
-            table_headers=["index","uuid","health","status","primaries","replicas","documents","size"]
+            table_headers=["index.name","index.uuid","index.health","index.status","primaries","replicas","documents","store.size"]
             return table_headers, table_data
         except ElasticsearchException:
             return None, None
@@ -171,7 +171,7 @@ def get_shards(es: Elasticsearch):
     else:
         try:
             table_data = es.cat.shards(format="json",h="i,s,p,st,d,sto,gmto,gto,n,ip",s="node,ip,index,store")
-            table_headers=["index","shard","pri/rep","state","documents","size","failed.ge.trequest","total.get.requests","node","ip"]
+            table_headers=["index.name","shard","pri/rep","shard.state","documents","store.size","failed.get.request","total.get.requests","node.name","node.ip"]
             return table_headers, table_data
         except ElasticsearchException:
             return None, None
