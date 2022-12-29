@@ -29,10 +29,15 @@ To run the app use the following command
     `python webapp.py --conf.path="location\to\config.yml"`
     
 and make sure to install the following libraries 
-- elasticsearch==7.10.0
 - Flask==2.2.2
 - PyYAML==6.0
 - requests==2.28.1
+
+Supports:
+- Elasticsearch 7.X.X
+- Elasticsearch 8.X.X
+- Opensearch (All)
+
 
 SCREENSHOTS:
 
