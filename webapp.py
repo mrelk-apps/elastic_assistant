@@ -1,19 +1,21 @@
-from flask import Flask, render_template, request
-from modules.elastic_connector import *
-from modules.mrelk import *
+from flask import Flask, render_template
+from modules.session_manager import *
+from modules.config_handler import *
+from modules.system import *
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @app.route('/')
 def home():
-    es,connection_status = multi_url_connection(config['elasticsearch.url'], 
+    es,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
                                         config['elasticsearch.password'], 
                                         config['elasticsearch.ssl.certificateAuthorities'], 
                                         config['elasticsearch.ssl.verificationMode'])
     if connection_status == "Connected":
-        cluster_status = es.cluster.health()
+        #cluster_status = es.cluster.health()
+        cluster_status = es.get(es.url+"_cluster/health").json()
         active_engines, inactive_engines, watchers_status = get_watcher_engine_status(es)
         es.close()
     else:
@@ -30,8 +32,8 @@ def home():
 
 @app.route('/settings', methods=['GET', 'POST'])
 def settings():
-    config, _ = read_config_yaml(arguments['conf.path'])
-    _,connection_status = multi_url_connection(config['elasticsearch.url'], 
+    config, _ = validate_config_yaml(arguments['conf.path'])
+    _,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
                                         config['elasticsearch.password'], 
                                         config['elasticsearch.ssl.certificateAuthorities'], 
@@ -42,8 +44,8 @@ def settings():
 
 @app.route('/nodes_view')
 def nodes_view():
-    config, _ = read_config_yaml(arguments['conf.path'])
-    es,connection_status = multi_url_connection(config['elasticsearch.url'], 
+    config, _ = validate_config_yaml(arguments['conf.path'])
+    es,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
                                         config['elasticsearch.password'], 
                                         config['elasticsearch.ssl.certificateAuthorities'], 
@@ -75,8 +77,8 @@ def nodes_view():
 
 @app.route('/index_view')
 def index_view():
-    config, _ = read_config_yaml(arguments['conf.path'])
-    es,connection_status = multi_url_connection(config['elasticsearch.url'], 
+    config, _ = validate_config_yaml(arguments['conf.path'])
+    es,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
                                         config['elasticsearch.password'], 
                                         config['elasticsearch.ssl.certificateAuthorities'], 
@@ -102,8 +104,8 @@ def index_view():
 
 @app.route('/shards_view')
 def shards_view():
-    config, _ = read_config_yaml(arguments['conf.path'])
-    es,connection_status = multi_url_connection(config['elasticsearch.url'], 
+    config, _ = validate_config_yaml(arguments['conf.path'])
+    es,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
                                         config['elasticsearch.password'], 
                                         config['elasticsearch.ssl.certificateAuthorities'], 
@@ -130,7 +132,7 @@ def shards_view():
 if __name__ == '__main__':
     arguments, arg_valid = validate_arugments(sys.argv)
     if arg_valid == "Valid":
-        config, conf_valid = read_config_yaml(arguments['conf.path'])
+        config, conf_valid = validate_config_yaml(arguments['conf.path'])
         if conf_valid == "Valid":
             app.config['DEBUG'] = config['logging.verbose']
             app.run(host=config['server.host'], port=config['server.port'])
