@@ -10,11 +10,10 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 def home():
     es,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
-                                        config['elasticsearch.password'], 
-                                        config['elasticsearch.ssl.certificateAuthorities'], 
-                                        config['elasticsearch.ssl.verificationMode'])
+                                        config['elasticsearch.password'],  
+                                        config['elasticsearch.ssl.verificationMode'],
+                                        config['elasticsearch.ssl.certificateAuthorities'])
     if connection_status == "Connected":
-        #cluster_status = es.cluster.health()
         cluster_status = es.get(es.url+"_cluster/health").json()
         active_engines, inactive_engines, watchers_status = get_watcher_engine_status(es)
         es.close()
@@ -35,9 +34,9 @@ def settings():
     config, _ = validate_config_yaml(arguments['conf.path'])
     _,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
-                                        config['elasticsearch.password'], 
-                                        config['elasticsearch.ssl.certificateAuthorities'], 
-                                        config['elasticsearch.ssl.verificationMode'])
+                                        config['elasticsearch.password'],  
+                                        config['elasticsearch.ssl.verificationMode'],
+                                        config['elasticsearch.ssl.certificateAuthorities'])
     return render_template('settings.html', 
                 connection_status=connection_status,config=config)
 
@@ -47,9 +46,9 @@ def nodes_view():
     config, _ = validate_config_yaml(arguments['conf.path'])
     es,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
-                                        config['elasticsearch.password'], 
-                                        config['elasticsearch.ssl.certificateAuthorities'], 
-                                        config['elasticsearch.ssl.verificationMode'])
+                                        config['elasticsearch.password'],  
+                                        config['elasticsearch.ssl.verificationMode'],
+                                        config['elasticsearch.ssl.certificateAuthorities'])
     if connection_status == "Connected":
         node_stats_headers, node_stats_data, master_id = get_node_stats(es)
         allocation_headers, allocation_data = get_allocation(es)
@@ -80,9 +79,9 @@ def index_view():
     config, _ = validate_config_yaml(arguments['conf.path'])
     es,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
-                                        config['elasticsearch.password'], 
-                                        config['elasticsearch.ssl.certificateAuthorities'], 
-                                        config['elasticsearch.ssl.verificationMode'])
+                                        config['elasticsearch.password'],  
+                                        config['elasticsearch.ssl.verificationMode'],
+                                        config['elasticsearch.ssl.certificateAuthorities'])
     if connection_status == "Connected":
         index_stats_headers, index_stats_data = get_index_stats(es)
         return render_template('index.html', 
@@ -107,9 +106,9 @@ def shards_view():
     config, _ = validate_config_yaml(arguments['conf.path'])
     es,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
-                                        config['elasticsearch.password'], 
-                                        config['elasticsearch.ssl.certificateAuthorities'], 
-                                        config['elasticsearch.ssl.verificationMode'])
+                                        config['elasticsearch.password'],  
+                                        config['elasticsearch.ssl.verificationMode'],
+                                        config['elasticsearch.ssl.certificateAuthorities'])
     if connection_status == "Connected":
         shards_headers, shards_data = get_shards(es)
         return render_template('shards.html', 
