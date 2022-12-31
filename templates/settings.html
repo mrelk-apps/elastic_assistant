@@ -38,7 +38,7 @@
           <img src="{{ url_for('static', filename= 'images/logo5.png') }}" class="u-logo-image u-logo-image-1">
         </a>
         <p class="u-custom-font u-text u-text-default u-text-1"><a href="/" ><span class="u-text-custom-color-2">MR. ELK</span></a></p>
-        <p class="u-custom-font u-text u-text-default u-text-white u-text-2">Elastic Assistent 1.0.0</p>
+        <p class="u-custom-font u-text u-text-default u-text-white u-text-2">Elastic Assistant</p>
         {% if connection_status == "Connected" %}
           <p class="u-btn u-radius-15 u-btn-1" style="background-color: #6CC24A; color: white; ">{{ connection_status }}</p>
         {% else %}
@@ -50,7 +50,7 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-border-2 u-border-custom-color-1 u-container-style u-group u-radius-10 u-shape-round u-white u-group-1">
           <div class="u-container-layout u-container-layout-1">
-            <p class="u-align-left u-custom-font u-text u-text-1">Editing the Setting will need a restart afterwards, please use the save button below for each tab you change values in then restart the service.</p>
+            <p class="u-align-left u-custom-font u-text u-text-1">This view is just to show the settings running at the moment, no editing allowed here.</p>
           </div>
         </div>
         <div class="u-tabs u-tabs-1">
@@ -69,16 +69,16 @@
                   <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
                     <div class="u-form-group u-form-name u-label-left">
                       <label for="name-b4a5" class="u-label">Server Host</label>
-                      <input type="text" placeholder="0.0.0.0" value="{{ config['server.host'] }}" id="name-b4a5" name="host" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="">
+                      <input type="text" placeholder="0.0.0.0" value="{{ config['server.host'] }}" id="name-b4a5" name="host" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="" readonly>
                     </div>
                     <div class="u-form-email u-form-group u-label-left">
                       <label class="u-label">Server Port</label>
-                      <input type="number" placeholder="9820" value="{{ config['server.port'] }}" id="email-b4a5" name="port" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="">
+                      <input type="number" placeholder="9820" value="{{ config['server.port'] }}" id="email-b4a5" name="port" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="" readonly>
                     </div>
                     <div class="u-form-group u-form-submit u-label-left">
                       <label class="u-label u-label-3"></label>
                       <div class="u-align-left u-btn-submit-container">
-                        <a href="#" class="u-btn u-btn-submit u-button-style u-radius-15 u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2">Save</a>
+                        <a href="#" class="u-btn u-btn-submit u-button-style u-radius-15 u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2" style="visibility: hidden;">Save</a>
                       </div>
                     </div>
                   </form>
@@ -91,28 +91,32 @@
                   <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
                     <div class="u-form-group u-form-name u-label-left">
                       <label for="name-b4a5" class="u-label">Elastic <br> URL</label>
-                      <input type="text" placeholder="http://elasticsearch:9200" value="{{ config['elasticsearch.url'] }}" id="name-b4a5" name="url" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="">
+                      <input type="text" placeholder="http://localhost:9200" value="{{ config['elasticsearch.url'] }}" id="name-b4a5" name="url" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="" readonly>
                     </div>
                     <div class="u-form-email u-form-group u-label-left">
                       <label for="email-b4a5" class="u-label">Elastic Username</label>
-                      <input type="text" placeholder="elastic" value="{{ config['elasticsearch.username'] }}" id="email-b4a5" name="username" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="">
+                      <input type="text" placeholder="elastic" value="{{ config['elasticsearch.username'] }}" id="email-b4a5" name="username" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" required="" readonly>
                     </div>
                     <div class="u-form-group u-label-left u-form-group-6">
                       <label for="text-eaf2" class="u-label">Elastic Password</label>
-                      <input type="password" placeholder="" value="{{ config['elasticsearch.password'] }}" id="text-eaf2" name="password" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15">
+                      <input type="password" placeholder="" value="{{ config['elasticsearch.password'] }}" id="text-eaf2" name="password" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" readonly>
                     </div>
                     <div class="u-form-group u-label-left u-form-group-7">
                       <label for="text-7d4a" class="u-label">PEM <br> Path</label>
-                      <input type="text" placeholder="/path/to/certificate" value="{{ config['elasticsearch.ssl.certificateAuthorities'] }}" id="text-7d4a" name="text-1" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15">
+                      <input type="text" placeholder="" value="{{ config['elasticsearch.ssl.certificateAuthorities'] }}" id="text-7d4a" name="text-1" class="u-border-1 u-border-custom-color-1 u-custom-color-2 u-input u-input-rectangle u-radius-15" readonly>
                     </div>
                     <div class="u-form-checkbox u-form-group u-form-group-8">
-                      <input type="checkbox" id="checkbox-cd3e" name="checkbox" value="On" checked>
+                      {% if config['elasticsearch.ssl.verificationMode'] == True %}
+                        <input type="checkbox" id="checkbox-cd3e" name="checkbox" value="On" checked onclick="return false;">
+                      {% else %}
+                        <input type="checkbox" id="checkbox-cd3e" name="checkbox" value="Off" onclick="return false;">
+                      {% endif %}
                       <label for="checkbox-cd3e" class="u-label">Verify SSL</label>
                     </div>
                     <div class="u-form-group u-form-submit u-label-left">
                       <label class="u-label u-label-9"></label>
                       <div class="u-align-left u-btn-submit-container">
-                        <a href="#" class="u-btn u-btn-submit u-button-style u-radius-15 u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2">Save</a>
+                        <a href="#" class="u-btn u-btn-submit u-button-style u-radius-15 u-active-custom-color-1 u-border-2 u-border-active-custom-color-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-button-style u-custom-color-2" style="visibility: hidden;">Save</a>
                       </div>
                     </div>
                   </form>

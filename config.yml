@@ -9,9 +9,9 @@ server.host: "localhost"
 
 # The URLs of the Elasticsearch instances to use for all your queries.
 # can use more than 1 node at a time to round robin on them
-# Example: elasticsearch.url: ["http://node1:9200","http://node2:9200"]
-# NOTE: [Scheme://IP:Port] MUST BE SPECIFIED
-elasticsearch.url: ["http://localhost:9200"]
+# Example: elasticsearch.url: "http://node1:9200,http://node2:9200"
+# NOTE: Scheme://IP:Port MUST BE SPECIFIED
+elasticsearch.url: "http://localhost:9200"
 
 # If your Elasticsearch is protected with basic authentication, these settings provide
 # the username and password that the Mr.Elk server uses to perform queries on Elasticsearch
@@ -26,8 +26,8 @@ elasticsearch.ssl.certificateAuthorities: "/path/to/certificate"
 # To disregard the validity of SSL certificates, change this setting's value to 'False'.
 elasticsearch.ssl.verificationMode: True
 
-# Enables you to specify a file where Kibana stores log output.
-logging.dest: /var/log/mrelk
+# Enables you to specify a file where Mr.Elk stores log output.
+logging.dest: "/var/log/mrelk"
 
 # Set the value of this setting to true to log all events, including system usage information
 # and all requests.
