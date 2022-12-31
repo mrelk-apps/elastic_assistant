@@ -31,19 +31,18 @@ def home():
 
 @app.route('/settings', methods=['GET', 'POST'])
 def settings():
-    config, _ = validate_config_yaml(arguments['conf.path'])
     _,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
                                         config['elasticsearch.password'],  
                                         config['elasticsearch.ssl.verificationMode'],
                                         config['elasticsearch.ssl.certificateAuthorities'])
     return render_template('settings.html', 
-                connection_status=connection_status,config=config)
+                connection_status=connection_status,
+                config=config)
 
 
 @app.route('/nodes_view')
 def nodes_view():
-    config, _ = validate_config_yaml(arguments['conf.path'])
     es,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
                                         config['elasticsearch.password'],  
@@ -76,7 +75,6 @@ def nodes_view():
 
 @app.route('/index_view')
 def index_view():
-    config, _ = validate_config_yaml(arguments['conf.path'])
     es,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
                                         config['elasticsearch.password'],  
@@ -103,7 +101,6 @@ def index_view():
 
 @app.route('/shards_view')
 def shards_view():
-    config, _ = validate_config_yaml(arguments['conf.path'])
     es,connection_status = establish_connection(config['elasticsearch.url'], 
                                         config['elasticsearch.username'], 
                                         config['elasticsearch.password'],  
@@ -131,7 +128,10 @@ def shards_view():
 if __name__ == '__main__':
     arguments, arg_valid = validate_arugments(sys.argv)
     if arg_valid == "Valid":
-        config, conf_valid = validate_config_yaml(arguments['conf.path'])
+        if 'conf.path' in arguments:
+            config, conf_valid = validate_config_yaml(arguments['conf.path'])
+        else:
+            config, conf_valid = validate_config_cli(arguments)
         if conf_valid == "Valid":
             app.config['DEBUG'] = config['logging.verbose']
             app.run(host=config['server.host'], port=config['server.port'])
