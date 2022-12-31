@@ -32,7 +32,7 @@ To run the app use the following command
 or you can download the ready image from docker hub https://hub.docker.com/repository/docker/mrelk/elastic_assistant
 and run the following command
 
-    `docker run -p 9820:9820 elastic_assistant --elasticsearch.url=https://localhost:9200 --elasticsearch.username=admin --elasticsearch.password=admin --elasticsearch.ssl.verificationMode=False --server.host=0.0.0.0 --server.port=9820`
+    `docker run -p 9820:9820 mrelk/elastic_assistant --elasticsearch.url=https://localhost:9200 --elasticsearch.username=admin --elasticsearch.password=admin --server.host=0.0.0.0 --server.port=9820`
     
 and make sure to install the following libraries 
 - Flask==2.2.2
