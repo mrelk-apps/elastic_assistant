@@ -9,9 +9,10 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/nicepage.css') }}" media="screen">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/Home.css') }}" media="screen">
-    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/jquery.js') }}" "="" defer=""></script>
-    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/nicepage.js') }}" "="" defer=""></script>
-        
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/jquery.js') }}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/nicepage.js') }}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename= 'js/app.js') }}" defer=""></script>
+
     <script type="application/ld+json">{
 		"@context": "https://www.mrelk.org",
 		"@type": "Organization",
@@ -145,7 +146,7 @@
     </section>
 
     <footer class="u-align-center u-clearfix u-footer u-grey-80" id="sec-0c0d"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1" style="font-size: 12px;"> © 2022 MR.ELK - All Rights Reserved</p>
+        <p class="u-small-text u-text u-text-variant u-text-1" style="font-size: 12px;"> © <span class="js-get-year"></span> MR.ELK - All Rights Reserved</p>
       </div></footer>
   </body>
 </html>
