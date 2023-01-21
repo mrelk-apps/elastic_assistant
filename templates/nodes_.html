@@ -91,6 +91,8 @@
                             <tr>    
                               {% if master_id == node %}
                                 <td>*</td>
+                              {% else %}
+                                <td>-</td>
                               {% endif %}
                                   <td>{{ node_stats_data["nodes"][node]["name"] }}</td>
                                   <td>{{ node_stats_data["nodes"][node]["ip"].split(":")[0] }}</td>

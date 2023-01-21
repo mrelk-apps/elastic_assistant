@@ -27,7 +27,7 @@ def validate_config_yaml(file_path: str):
         config = yaml.safe_load(f)
     return validate_config_cli(config)
 
-def validate_config_cli(config :dict):
+def validate_config_cli(config: dict):
     """
     this function will take the cli configurations and validate it in case of using cli not config.yml
     """
