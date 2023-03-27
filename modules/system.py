@@ -26,17 +26,13 @@ def get_watcher_engine_status(session):
         return None
     else:
         try:
-            #session.cat.indices(index = ".watches")
-            session.get(session.url+"_cat/indices?index=.watches")
             unassigned_watches = 0
             data = []
-            #watchers_data = session.cat.shards(index=".watches", format="json", h="id,node,prirep,state")
             watchers_data = session.get(session.url+"_cat/indices?index=.watches&format=json&h=id,node,prirep,state").json()
             engines_count = len(watchers_data)
             for i in range(engines_count):
                 if watchers_data[i]['state'] == "UNASSIGNED":
                     unassigned_watches += 1
-                #watcher_stats = session.watcher.stats(filter_path="stats",format="json")["stats"]
                 watcher_stats = session.get(session.url+"_watcher/stats&filter_path=stats&format=json").json()["stats"]
                 for j in range(len(watcher_stats)):
                     if watchers_data[i]["id"] == watcher_stats[j]["node_id"]:
@@ -56,7 +52,6 @@ def get_thread_pool(session):
         return None
     else:
         try:
-            #table_data = session.cat.thread_pool(format="json", h="node_name,ip,name,queue_size,queue,active,rejected,completed", s="nn,ip,c")
             table_data = session.get(session.url+"_cat/thread_pool?format=json&h=node_name,ip,name,queue_size,queue,active,rejected,completed&s=nn,ip,c").json()
             table_headers = ["node.name","node.ip","action","queue.size","queued","active","rejected","completed"]
             return table_headers, table_data
@@ -71,10 +66,8 @@ def get_node_stats(session):
         return None
     else:
         try:
-            #table_data = session.nodes.stats(format="json",metric="os,jvm", filter_path="nodes.*.name,nodes.*.ip,nodes.*.version,nodes.*.roles,nodes.*.os.cpu.percent,nodes.*.os.mem.used_percent,nodes.*.jvm.mem.heap_used_percent")
             table_data = session.get(session.url+"_nodes/stats?format=json&metric=os,jvm&filter_path=nodes.*.name,nodes.*.ip,nodes.*.version,nodes.*.roles,nodes.*.os.cpu.percent,nodes.*.os.mem.used_percent,nodes.*.jvm.mem.heap_used_percent").json()
             table_headers = [" ","node.name","node.ip","node.id","node.roles","os.cpu.used","os.mem.used","jvm.mem.used"]
-            #master_id=session.cat.master(format="json", filter_path="id")[0]["id"]
             master_id = session.get(session.url+"_cat/master?format=json&filter_path=id").json()[0]["id"]
             return table_headers, table_data, master_id
         except:
@@ -88,7 +81,6 @@ def get_allocation(session):
         return None
     else:
         try:
-            #table_data = session.cat.allocation(format="json", s="n,ip")
             table_data = session.get(session.url+"_cat/allocation?format=json&s=n,ip").json()
             table_headers=["node.name","node.ip","shards","disk.used","disk.available","disk.total","disk.percent"]
             return table_headers, table_data
@@ -103,7 +95,6 @@ def get_index_stats(session):
         return None
     else:
         try:
-            #table_data = session.cat.indices(format="json", expand_wildcards="all")
             table_data = session.get(session.url+"_cat/indices?format=json&expand_wildcards=all").json()
             table_headers=["index.name","index.uuid","index.health","index.status","primaries","replicas","documents","store.size"]
             return table_headers, table_data
@@ -118,7 +109,6 @@ def get_shards(session):
         return None
     else:
         try:
-            #table_data = session.cat.shards(format="json",h="i,s,p,st,d,sto,gmto,gto,n,ip",s="node,ip,index,store")
             table_data = session.get(session.url+"_cat/shards?format=json&h=i,s,p,st,d,sto,gmto,gto,n,ip&s=node,ip,index,store").json()
             table_headers=["index.name","shard","pri/rep","shard.state","documents","store.size","failed.get.request","total.get.requests","node.name","node.ip"]
             return table_headers, table_data
